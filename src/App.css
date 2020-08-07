@@ -6,3 +6,25 @@
 }
 
 
+.title{
+  margin-top: 130px;
+  font-size: 70px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width:50px;
+  height: 40px;
+  
+}
+
+.bar {
+  padding-left: 60px;
+  padding: 0 auto;
+ }
+.sBar:hover {
+  fill: brown;
+ }
