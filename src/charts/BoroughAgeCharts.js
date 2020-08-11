@@ -8,7 +8,8 @@ export default class BoroughAgeCharts extends Component {
         let hospitalizedCount = `${this.props.abbr}HOSPITALIZED_COUNT`
         let caseCount = `${this.props.abbr}CASE_COUNT`
         let info = this.props.info
-
+        // console.log(this.props.mode)
+        // console.log(this.props.info['0-17'] && this.props.info['0-17'][deathCount])
         return(    
             <div>
             {this.props.mode === 'cases' && <LineChart
@@ -16,7 +17,7 @@ export default class BoroughAgeCharts extends Component {
             height={700}
             data={this.props.info['0-17'] && [
                 {
-                'name': '0-17', 'cases': info["0-17"][caseCount], 'amt': info["0-17"][caseCount]
+                'name': "0-17", 'cases': info["0-17"][caseCount], 'amt': info["0-17"][caseCount]
                 },
                 {
                 'name': '18-44', 'cases': info['18-44'][caseCount], 'amt': info['18-44'][caseCount]

@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-// import * as d3 from 'd3'
+import {XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar} from 'recharts';
 
 export default class Race extends Component {
     constructor(){
         super()
         this.state={
-            female: {},
-            male: {}
+            data: {},
+            mode: 'cases'
           }
           }
         
@@ -15,22 +15,93 @@ export default class Race extends Component {
             .then(resp => resp.json())
             .then(data => {
               this.setState({
-              female: data["Female"],
-              male: data["Male"]
+              data: data
             })
           })
           }
+
+          updateMode = (id) => {
+            this.setState({
+              mode: id
+            })
+          }
         
           render(){
-            let [female, male] = [this.state.female, this.state.male]
-            return(
-            <div className="App">
-              <h1>Sex Groups</h1>
-              <ol>
-                  <li>Female: {female.CASE_COUNT}</li>
-                  <li>Male: {male.CASE_COUNT}</li>
-                  </ol>
-            </div>
-          );
+            let info = this.state.data
+            
+            return(    
+                <div>
+                <button id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
+               {this.state.mode === 'cases' && <BarChart
+            width={700}
+            height={700}
+            data={info["Male"] && [ 
+                {
+                'name': "Male", 'cases': info["Male"]["CASE_COUNT"], 'amt': info["Male"]["CASE_COUNT"]
+                },
+                {
+                'name': "Female", 'cases': info["Female"]["CASE_COUNT"], 'amt': info["Female"]["CASE_COUNT"]
+                }]
             }
+            margin={{
+              top: 5, right: 30, left: 20, bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="cases" fill="#8884d8" />
+          </BarChart>
+                }
+                {this.state.mode === 'deaths' &&  <BarChart
+            width={700}
+            height={700}
+            data={info["Male"] && [ 
+                {
+                'name': "Male", 'deaths': info["Male"]["DEATH_COUNT"], 'amt': info["Male"]["DEATH_COUNT"]
+                },
+                {
+                'name': "Female", 'deaths': info["Female"]["DEATH_COUNT"], 'amt': info["Female"]["DEATH_COUNT"]
+                }] 
+            }
+            margin={{
+              top: 5, right: 30, left: 20, bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="deaths" fill="#8884d8" />
+          </BarChart>
+                }
+                {this.state.mode === 'hospitilizations' && <BarChart
+            width={700}
+            height={700}
+            data={info["Male"] && [ 
+                {
+                'name': "Male", 'hospitilizations': info["Male"]["HOSPITALIZED_COUNT"], 'amt': info["Male"]["HOSPITALIZED_COUNT"]
+                },
+                {
+                'name': "Female", 'hospitilizations': info["Female"]["HOSPITALIZED_COUNT"], 'amt': info["Female"]["HOSPITALIZED_COUNT"]
+                }] 
+            }
+            margin={{
+              top: 5, right: 30, left: 20, bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="hospitilizations" fill="#8884d8" />
+          </BarChart>
+                }
+                </div>
+            )
         }
+    }

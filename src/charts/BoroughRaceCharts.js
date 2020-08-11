@@ -6,27 +6,24 @@ export default class BoroughRaceCharts extends Component {
         let hospitalizedCount = `${this.props.abbr}HOSPITALIZED_COUNT`
         let caseCount = `${this.props.abbr}CASE_COUNT`
         let info = this.props.info
-
+      
         return(    
             <div>
             {this.props.mode === 'cases' && <LineChart
             width={700}
             height={700}
-            data={this.props.info['0-17'] && [
+            data={this.props.info["Asian/Pacific-Islander"] && [
                 {
-                'name': '0-17', 'cases': info["0-17"][caseCount], 'amt': info["0-17"][caseCount]
+                'name': "Asian/Pacific-Islander", 'cases': info["Asian/Pacific-Islander"][caseCount], 'amt': info["Asian/Pacific-Islander"][caseCount]
                 },
                 {
-                'name': '18-44', 'cases': info['18-44'][caseCount], 'amt': info['18-44'][caseCount]
+                'name': "Black/African-American", 'cases': info["Black/African-American"][caseCount], 'amt': info["Black/African-American"][caseCount]
                 },
                 {
-                'name': '45-64', 'cases': info['45-64'][caseCount], 'amt': info['45-64'][caseCount]
+                'name': "Hispanic/Latino", 'cases': info["Hispanic/Latino"][caseCount], 'amt': info["Hispanic/Latino"][caseCount]
                 },
                 {
-                'name': '65-74', 'cases': info['65-74'][caseCount], 'amt': info['65-74'][caseCount]
-                },
-                {
-                'name': '75+', 'cases': info['75+'][caseCount], 'amt': info['75+'][caseCount]
+                'name': "White", 'cases': info["White"][caseCount], 'amt': info["White"][caseCount]
                 }] 
               
             }
@@ -45,21 +42,18 @@ export default class BoroughRaceCharts extends Component {
             {this.props.mode === 'deaths' &&  <BarChart
         width={700}
         height={700}
-        data={this.props.info['0-17'] && [ 
+        data={this.props.info["Asian/Pacific-Islander"] && [ 
             {
-            'name': '0-17', 'deaths': info["0-17"][deathCount], 'amt': info["0-17"][deathCount]
+            'name': "Asian/Pacific-Islander", 'deaths': info["Asian/Pacific-Islander"][deathCount], 'amt': info["Asian/Pacific-Islander"][deathCount]
             },
             {
-            'name': '18-44', 'deaths': info['18-44'][deathCount], 'amt': info['18-44'][deathCount]
+            'name': "Black/African-American", 'deaths': info["Black/African-American"][deathCount], 'amt': info["Black/African-American"][deathCount]
             },
             {
-            'name': '45-64', 'deaths': info['45-64'][deathCount], 'amt': info['45-64'][deathCount]
+            'name': "Hispanic/Latino", 'deaths': info["Hispanic/Latino"][deathCount], 'amt': info["Hispanic/Latino"][deathCount]
             },
             {
-            'name': '65-74', 'deaths': info['65-74'][deathCount], 'amt': info['65-74'][deathCount]
-            },
-            {
-            'name': '75+', 'deaths': info['75+'][deathCount], 'amt': info['75+'][deathCount]
+            'name': "White", 'deaths': info["White"][deathCount], 'amt': info["White"][deathCount]
             }] 
         }
         margin={{
@@ -77,21 +71,18 @@ export default class BoroughRaceCharts extends Component {
             {this.props.mode === 'hospitilizations' &&    <BarChart
         width={700}
         height={700}
-        data={this.props.info['0-17'] && [ 
+        data={this.props.info["Asian/Pacific-Islander"] && [ 
             {
-            'name': '0-17', 'hospitilizations': info["0-17"][hospitalizedCount], 'amt': info["0-17"][hospitalizedCount]
+            'name': "Asian/Pacific-Islander", 'hospitilizations': info["Asian/Pacific-Islander"][hospitalizedCount], 'amt': info["Asian/Pacific-Islander"][hospitalizedCount]
             },
             {
-            'name': '18-44', 'hospitilizations': info['18-44'][hospitalizedCount], 'amt': info['18-44'][hospitalizedCount]
+            'name': "Black/African-American", 'hospitilizations': info["Black/African-American"][hospitalizedCount], 'amt': info["Black/African-American"][hospitalizedCount]
             },
             {
-            'name': '45-64', 'hospitilizations': info['45-64'][hospitalizedCount], 'amt': info['45-64'][hospitalizedCount]
+            'name': "Hispanic/Latino", 'hospitilizations': info["Hispanic/Latino"][hospitalizedCount], 'amt': info["Hispanic/Latino"][hospitalizedCount]
             },
             {
-            'name': '65-74', 'hospitilizations': info['65-74'][hospitalizedCount], 'amt': info['65-74'][hospitalizedCount]
-            },
-            {
-            'name': '75+', 'hospitilizations': info['75+'][hospitalizedCount], 'amt': info['75+'][hospitalizedCount]
+            'name': "White", 'hospitilizations': info["White"][hospitalizedCount], 'amt': info["White"][hospitalizedCount]
             }] 
         }
         margin={{

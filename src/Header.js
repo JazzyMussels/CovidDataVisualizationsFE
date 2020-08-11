@@ -20,7 +20,7 @@ export default class Header extends Component{
                 <Nav.Link href="/testing">Testing</Nav.Link>
                 <Nav.Link href="/by_neighborhood">Neighborhoods</Nav.Link>
                 <NavDropdown title="Demographic Data" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/home">Borough</NavDropdown.Item>
+                    <NavDropdown.Item href="/boroughs">Borough</NavDropdown.Item>
                     <NavDropdown.Item href="/by_age">Age</NavDropdown.Item>
                     <NavDropdown.Item href="/by_income">Poverty</NavDropdown.Item>
                     <NavDropdown.Item href="/by_race">Race</NavDropdown.Item>

@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
 import './App.css';
-// import * as d3 from 'd3'
 import Poverty from './containers/Poverty'
 import Age from './containers/Age'
 import Borough from './containers/Borough'
@@ -13,6 +12,7 @@ import {Route, Switch } from 'react-router-dom';
 import Header from './Header'
 import About from './containers/About'
 import Contact from './containers/Contact'
+import Citywide from './containers/Citywide'
 
 export default class App extends Component{
  
@@ -22,7 +22,9 @@ export default class App extends Component{
         <Header />
         <h1 className='title'>NYC Covid-19 Data</h1>
         <Switch>
-        <Route path='/home' component={Borough}></Route>
+        <Route path="/" component={Citywide} exact />
+        <Route path='/home' component={Citywide}></Route>
+        <Route path='/boroughs' component={Borough}></Route>
         <Route path='/by_sex' component={Sex}></Route>
         <Route path='/by_age' component={Age}></Route>
         <Route path='/by_income' component={Poverty}></Route>
@@ -32,7 +34,6 @@ export default class App extends Component{
         <Route path='/about' component={About}></Route>
         <Route path='/contact' component={Contact}></Route>
         <Route path='/testing' component={Testing}></Route>
-        {/* <Route path='/manhattan' component={Borough}></Route> */}
         </Switch>
         </div>   
 

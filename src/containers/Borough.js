@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import EachBorough from '../components/EachBorough'
+import {Link} from 'react-router-dom';
 
 export default class Borough extends Component {
     constructor(){
@@ -12,9 +13,11 @@ export default class Borough extends Component {
             statenIsland: {},
             citywide: {},
             showBorough: false,
-            currentChoice: ''
+            currentChoice: '',
+            showCategory: false
           }
           }
+          
       
           componentDidMount(){
             fetch('http://localhost:3001/boroughs')
@@ -39,12 +42,18 @@ export default class Borough extends Component {
           let abbrDict = {'Bronx': 'BX_', 'Brooklyn': 'BK_', 'Manhattan': 'MN_', 'Queens': 'QN_', 'StatenIsland': 'SI_'}
             return(
               <div>
-                <EachBorough key={id} info={dict[id]} abbr={abbrDict[id]}/>
-                <button onClick={this.returnClick}>CLOSE</button>
+                <EachBorough key={id} info={dict[id]} abbr={abbrDict[id]} showCategory={this.state.showCategory} updateShowCategory={this.updateShowCategory} returnClick={this.returnClick}/>
               </div>
             )
           
         }
+
+        updateShowCategory = () => {
+          this.setState({
+            showCategory: !this.state.showCategory
+          })
+        }
+
         returnClick = () => {
           this.setState({
             showBorough: !this.state.showBorough,
@@ -55,43 +64,35 @@ export default class Borough extends Component {
         handleClick = (event) => {
           this.setState({
             showBorough: !this.state.showBorough,
-            currentChoice: event.target.id
+            currentChoice: event.target.id,
           })
           this.iterateState(event.target.id)
         }
           render(){
-            // let [bronx, brooklyn, nyc, queens, staten] = [this.state.bronx, this.state.brooklyn, this.state.manhattan, this.state.queens, this.state.statenIsland]
-            return(
+          return(
            <div>
               {this.state.showBorough ?
                this.iterateState(this.state.currentChoice) :
               <div>
               <h1>Select A Borough</h1>
-              <table onClick={(e) => this.handleClick(e)} width="100%" cellSpacing="10" cellPadding='20'>
+              <table  width="100%" cellSpacing="10" cellPadding='20'>
                 <tbody>
               <tr>
-                <td width="25%"><img id='Bronx' src={'/bronx.jpg'} alt='img'/></td>
-                <td width="25%"><img id='Brooklyn' src={'/brooklyn.jpg'} alt='img'/></td>
+                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='Bronx' src={'/bronx.jpg'} alt='img'/></td>
+                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='Brooklyn' src={'/brooklyn.jpg'} alt='img'/></td>
               </tr>
               <tr>
-                <td width="25%"><img id='Manhattan' src={'/nyc.jpg'} alt='img'/></td>
-                <td width="25%"><img id='Queens' src={'/queens.jpg'} alt='img'/></td>
+                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='Manhattan' src={'/nyc.jpg'} alt='img'/></td>
+                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='Queens' src={'/queens.jpg'} alt='img'/></td>
               </tr>
               <tr>
-                <td width="25%"><img id='StatenIsland' src={'/staten.jpg'} alt='img'/></td>
-                <td width="25%"><img id='Citywide' src={'/citywide.jpg'} alt='img'/></td>
+                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='StatenIsland' src={'/staten.jpg'} alt='img'/></td>
+                <Link to='/home'><td width="25%"><img id='Citywide' src={'/citywide.jpg'} alt='img'/></td></Link>
               </tr>
               </tbody>
               </table>
               </div>
           }
-          
-                  {/* <p>Bronx: {bronx.CASE_COUNT}, {bronx.DEATH_COUNT}, {bronx.HOSPITALIZED_COUNT}</p>
-                  <p>Brooklyn: {brooklyn.CASE_COUNT}</p>
-                  <p>manhattan: {nyc.CASE_COUNT}</p>
-                  <p>Queens: {queens.CASE_COUNT}</p>
-                  <p>Staten Island: {staten.CASE_COUNT}</p> */}
-                 
             </div>
           );
             }
