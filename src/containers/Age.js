@@ -27,12 +27,21 @@ export default class Age extends Component {
             })
           }
 
+          customTooltip = ({ active, payload, label }) => {
+            return active && (
+              <div className="custom-tooltip">
+                <h1 className="label" style={{ color: 'black' }}>Ages: {label}</h1>
+                <p className="label" style={{ color: 'black' }}>{`${payload[0]['name']} : ${payload[0].value}`}</p>
+              </div>
+            );
+        };
+
           render(){
             let info = this.state.data
-            console.log(this.state.mode)
             return(    
                 <div>
                   <button id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
+                  <br></br>
                 {this.state.mode === 'cases' && <LineChart
                 width={700}
                 height={700}
@@ -58,14 +67,15 @@ export default class Age extends Component {
                   top: 5, right: 30, left: 20, bottom: 5,
                 }}
               >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
+                <CartesianGrid strokeDasharray="3 3" stroke='black' />
+                <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+                <YAxis stroke='black' tick={{ fill: 'black', fontSize: 10 }} />
+                <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
                 <Legend />
                 <Line type="monotone" dataKey="cases" stroke="#82ca9d" />
               </LineChart>
                 }
+                <br></br>
                 {this.state.mode === 'deaths' &&  <BarChart
             width={700}
             height={700}
@@ -90,14 +100,15 @@ export default class Age extends Component {
               top: 5, right: 30, left: 20, bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
+            <CartesianGrid strokeDasharray="3 3" stroke="black"  />
+            <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }} />
+            <YAxis stroke='black' tick={{ fill: 'black' }} ticks={[0,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500,6000,6500,7000,7500,8000,8500,9000,9500,10000]}/>
+            <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
             <Legend />
             <Bar dataKey="deaths" fill="#8884d8" />
           </BarChart>
                 }
+                <br></br>
                 {this.state.mode === 'hospitilizations' &&  <BarChart
             width={700}
             height={700}
@@ -122,10 +133,10 @@ export default class Age extends Component {
               top: 5, right: 30, left: 20, bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
+            <CartesianGrid stroke='black' tick={{ fill: 'black', fontSize: 10 }} strokeDasharray="3 3" />
+            <XAxis dataKey="name" stroke='black' tick={{ fill: 'black' }}/>
+            <YAxis stroke='black' tick={{ fill: 'black' }} ticks={[0,1500,3000,4500,6000,7500,9000,10500,12000,13500,15000,16500,18000,19500]}/>
+            <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
             <Legend />
             <Bar dataKey="hospitilizations" fill="#8884d8" />
           </BarChart>
@@ -134,20 +145,3 @@ export default class Age extends Component {
             )
         }
     }
-        
-        //   render(){
-        //     let [genZ, millenials, genX, boomers, silent] = [this.state.under18, this.state.eighteenTo44, this.state.fortyFiveTo64, this.state.sixtyFiveTo64, this.state.over75]
-        //     return(
-        //     <div className="App">
-        //       <h1>Age Groups</h1>
-        //       <ol>
-        //           <li>-18: {genZ.CASE_COUNT}</li>
-        //           <li>18-44: {millenials.CASE_COUNT}</li>
-        //           <li>45-64: {genX.CASE_COUNT}</li>
-        //           <li>65-74: {boomers.CASE_COUNT}</li>
-        //           <li>75+: {silent.CASE_COUNT}</li>
-        //           </ol>
-        //     </div>
-        //   );
-        //     }
-        // }

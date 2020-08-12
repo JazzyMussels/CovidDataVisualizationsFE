@@ -45,7 +45,6 @@ export default class BoroughAge extends Component {
  
 
     render(){
-        // console.log(this.state.currentData)
         return(
             <div>
                 <h1> AGE DATA</h1>

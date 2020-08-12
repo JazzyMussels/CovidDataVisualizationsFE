@@ -1,6 +1,66 @@
 import React, {Component} from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar} from 'recharts';
 export default class BoroughRaceCharts extends Component {
+    
+  customTooltip = ({ active, payload, label }) => {
+    return active && (
+      <div className="custom-tooltip">
+        <h1 className="label" style={{ color: 'black' }}>Ages: {label}</h1>
+        <p className="label" style={{ color: 'black' }}>{`${payload[0]['name']} : ${payload[0].value}`}</p>
+      </div>
+    );
+};
+
+setCaseTicks = () => {
+  switch (this.props.abbr){
+    case 'BX_':
+      return [...Array(18).keys() ].map( i => i*1000)
+    case 'BK_':
+      return [...Array(13).keys() ].map( i => i*1000)
+    case 'MN_':
+      return [...Array(7).keys() ].map( i => i*1000)
+    case 'QN_':
+      return [...Array(13).keys() ].map( i => i*1000)
+    case 'SI_':
+      return [...Array(7).keys() ].map( i => i*1000)
+    default:
+      return null
+}
+}
+
+setHospitalTicks = () => {
+  switch (this.props.abbr){
+    case 'BX_':
+      return [...Array(7).keys() ].map( i => i*1000)
+    case 'BK_':
+      return [...Array(7).keys() ].map( i => i*1000)
+    case 'MN_':
+      return [...Array(14).keys() ].map( i => i*200)
+    case 'QN_':
+      return [...Array(7).keys() ].map( i => i*1000)
+    case 'SI_':
+      return [...Array(8).keys() ].map( i => i*200)
+    default:
+      return null
+  }
+}
+
+setDeathTicks = () => {
+switch (this.props.abbr){
+  case 'BX_':
+    return [...Array(11).keys() ].map( i => i*200)
+  case 'BK_':
+    return [...Array(12).keys() ].map( i => i*200)
+  case 'MN_':
+    return [...Array(11).keys() ].map( i => i*100)
+  case 'QN_':
+    return [...Array(10).keys() ].map( i => i*200)
+  case 'SI_':
+    return [...Array(7).keys() ].map( i => i*100)
+  default:
+    return null
+}
+}
     render(){
         let deathCount = `${this.props.abbr}DEATH_COUNT`
         let hospitalizedCount = `${this.props.abbr}HOSPITALIZED_COUNT`
@@ -31,10 +91,10 @@ export default class BoroughRaceCharts extends Component {
               top: 5, right: 30, left: 20, bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
+            <CartesianGrid strokeDasharray="3 3" stroke='black' />
+            <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+            <YAxis stroke='black' tick={{ fill: 'black', fontSize: 10 }} ticks={this.setCaseTicks()} />
+            <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
             <Legend />
             <Line type="monotone" dataKey="cases" stroke="#82ca9d" />
           </LineChart>
@@ -60,10 +120,10 @@ export default class BoroughRaceCharts extends Component {
           top: 5, right: 30, left: 20, bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
+        <CartesianGrid strokeDasharray="3 3"  stroke="black"/>
+        <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+        <YAxis stroke='black' tick={{ fill: 'black' }}ticks={this.setDeathTicks()}/>
+        <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
         <Legend />
         <Bar dataKey="deaths" fill="#8884d8" />
       </BarChart>
@@ -89,10 +149,10 @@ export default class BoroughRaceCharts extends Component {
           top: 5, right: 30, left: 20, bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
+        <CartesianGrid stroke='black' tick={{ fill: 'black', fontSize: 10 }} strokeDasharray="3 3" />
+        <XAxis dataKey="name" stroke='black' tick={{ fill: 'black' }}/>
+        <YAxis stroke='black' tick={{ fill: 'black' }} ticks={this.setHospitalTicks()}/>
+        <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
         <Legend />
         <Bar dataKey="hospitilizations" fill="#8884d8" />
       </BarChart>

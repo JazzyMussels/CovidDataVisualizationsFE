@@ -3,6 +3,19 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'rech
 
 
 export default class BoroughMainBar extends Component {
+
+  customTooltip = ({ active, payload }) => {
+    return active && (
+      <div className="custom-tooltip">
+        <h1 className="label" style={{ color: 'black' }}>Total {payload[0]['name']}</h1>
+        <p className="label" style={{ color: 'black' }}>{`${payload[0]['name']} : ${payload[0].value}`}</p>
+        <br></br>
+        <h1 className="label" style={{ color: 'black' }}>Total {payload[1]['name']}</h1>
+        <p className="label" style={{ color: 'black' }}>{`${payload[1]['name']} : ${payload[1].value}`}</p>
+      </div>
+    );
+  }
+
     render(){
         let info = this.props.info
         let casesHospitalData =[
@@ -18,33 +31,33 @@ export default class BoroughMainBar extends Component {
         return(
         <div>
         <BarChart
-        width={400}
-        height={400}
+        width={600}
+        height={600}
         data={casesHospitalData}
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
+        <CartesianGrid strokeDasharray="3 3" stroke='black' />
+        <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+        <YAxis stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+        <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
         <Legend />
         <Bar dataKey="cases" fill="#8884d8" />
         <Bar dataKey="hospitilizations" fill="#82ca9d" />
       </BarChart>
       <BarChart
-        width={400}
-        height={400}
+        width={600}
+        height={600}
         data={casesDeathData}
         margin={{
           top: 5, right: 30, left: 20, bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
+        <CartesianGrid strokeDasharray="3 3" stroke='black' />
+        <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+        <YAxis stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+        <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
         <Legend />
         <Bar dataKey="cases" fill="#8884d8" />
         <Bar dataKey="deaths" fill="#82ca9d" />

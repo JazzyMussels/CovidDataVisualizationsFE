@@ -19,7 +19,6 @@ export default class EachBorough extends Component {
 
     render(){
         let borough = this.props.info.BOROUGH_GROUP
-        console.log(this.state.mode)
         return(
             <div>
                 {borough === 'Bronx' ? <h1>Data For The {borough} </h1> : null}

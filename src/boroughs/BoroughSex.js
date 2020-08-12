@@ -42,7 +42,6 @@ export default class BoroughSex extends Component {
 }
 
     render(){
-        console.log(this.state.currentData)
         return(
             <div>
                 <button id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>

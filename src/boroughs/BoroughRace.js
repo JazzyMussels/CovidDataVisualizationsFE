@@ -45,7 +45,6 @@ export default class BoroughRace extends Component {
 
 
     render(){
-        console.log(this.state.data["Asian/Pacific-Islander"] && this.state.data["Asian/Pacific-Islander"]['BK_CASE_COUNT'])
         return(
         <div>
             <button id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>

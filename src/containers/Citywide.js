@@ -25,6 +25,18 @@ export default class Citywide extends Component {
         })
     }
 
+    customTooltip = ({ active, payload }) => {
+      return active && (
+        <div className="custom-tooltip">
+          <h1 className="label" style={{ color: 'black' }}>Total {payload[0]['name']}</h1>
+          <p className="label" style={{ color: 'black' }}>{`${payload[0]['name']} : ${payload[0].value}`}</p>
+          <br></br>
+          <h1 className="label" style={{ color: 'black' }}>Total {payload[1]['name']}</h1>
+          <p className="label" style={{ color: 'black' }}>{`${payload[1]['name']} : ${payload[1].value}`}</p>
+        </div>
+      );
+  };
+
     render(){
         let info = this.state.data
         let casesHospitalData =[
@@ -47,11 +59,11 @@ export default class Citywide extends Component {
           top: 5, right: 30, left: 20, bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
+        <CartesianGrid strokeDasharray="3 3" stroke='black' />
+                <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+                <YAxis stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+                <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
+                <Legend />
         <Bar dataKey="cases" fill="#8884d8" />
         <Bar dataKey="hospitilizations" fill="#82ca9d" />
       </BarChart>
@@ -63,11 +75,11 @@ export default class Citywide extends Component {
           top: 5, right: 30, left: 20, bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
+        <CartesianGrid strokeDasharray="3 3" stroke='black' />
+                <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+                <YAxis stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
+                <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
+                <Legend />
         <Bar dataKey="cases" fill="#8884d8" />
         <Bar dataKey="deaths" fill="#82ca9d" />
       </BarChart>

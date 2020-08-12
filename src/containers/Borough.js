@@ -87,7 +87,7 @@ export default class Borough extends Component {
               </tr>
               <tr>
                 <td width="25%"><img onClick={(e) => this.handleClick(e)} id='StatenIsland' src={'/staten.jpg'} alt='img'/></td>
-                <Link to='/home'><td width="25%"><img id='Citywide' src={'/citywide.jpg'} alt='img'/></td></Link>
+                <td width="25%"><Link to='/home'><img id='Citywide' src={'/citywide.jpg'} alt='img'/></Link></td>
               </tr>
               </tbody>
               </table>

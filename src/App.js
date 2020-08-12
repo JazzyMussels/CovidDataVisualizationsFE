@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import './App.css';
+import './css/App.css';
 import Poverty from './containers/Poverty'
 import Age from './containers/Age'
 import Borough from './containers/Borough'
@@ -9,7 +9,7 @@ import Sex from './containers/Sex'
 import Timeline from './containers/Timeline'
 import Testing from './containers/Testing'
 import {Route, Switch } from 'react-router-dom';
-import Header from './Header'
+import Header from './containers/Header'
 import About from './containers/About'
 import Contact from './containers/Contact'
 import Citywide from './containers/Citywide'
