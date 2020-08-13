@@ -1,0 +1,11 @@
+.borough-img{
+    max-width:100%;
+    height:auto;
+    border: 5px solid #474747;
+    border-radius: 4px;
+    /* transition: all 0.2s ease-in-out; */
+}
+.borough-img:hover{
+    box-shadow: 0 15px 35px #E8175D;
+    border: 5px solid #CC527A;
+}

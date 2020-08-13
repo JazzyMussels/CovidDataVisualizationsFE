@@ -44,6 +44,7 @@ export default class BoroughSex extends Component {
     render(){
         return(
             <div>
+                <h1> {this.props.borough === 'StatenIsland' ? 'Staten Island Results By Sex' : this.props.borough + ' Results By Sex'}</h1>
                 <button id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
                 <BoroughSexCharts currentMode={this.props.mode} info={this.state.currentData} mode={this.state.mode} abbr={this.props.abbr} ></BoroughSexCharts>
             </div>

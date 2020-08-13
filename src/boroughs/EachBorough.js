@@ -3,7 +3,7 @@ import BoroughMainBar from '../charts/BoroughMainBar'
 import BoroughRace from './BoroughRace'
 import BoroughSex from './BoroughSex'
 import BoroughAge from './BoroughAge'
-
+import '../css/each-borough.css'
 export default class EachBorough extends Component {
 
     state = {
@@ -20,21 +20,22 @@ export default class EachBorough extends Component {
     render(){
         let borough = this.props.info.BOROUGH_GROUP
         return(
-            <div>
-                {borough === 'Bronx' ? <h1>Data For The {borough} </h1> : null}
-                {borough === 'StatenIsland' ? <h1>Data For Staten Island </h1> : null}
-                {borough === 'Citywide' ? <h1>Data For All Boroughs </h1> : null}
-                {borough === 'Brooklyn' || borough === 'Queens' || borough === 'Manhattan' ? <h1>Data For {borough} </h1> : null}
+            <div id='each-borough'>
+                <h1>
+                {borough === 'Bronx' && `Data For The ${borough}`}
+                {borough === 'StatenIsland' && 'Data For Staten Island'}
+                {(borough === 'Brooklyn' || borough === 'Queens' || borough === 'Manhattan') && `Data For ${borough}`}
+                </h1>
             <BoroughMainBar info={this.props.info}/>
             {this.state.mode === 'all' && 
-            <div>
-            <h2>Demographic Information</h2>
+            <div id='category-div'>
+            <h2>Select a Category</h2>
             <table onClick={(e) => this.handleClick(e)} width="100%" cellSpacing="10" cellPadding='20'>
                 <tbody>
               <tr>
-                <td width="25%"><img id='age' src={'/res_age.png'} alt='img'/></td>
-                <td width="25%"><img id='sex' src={'/res_sex.png'} alt='img'/></td>
-                <td width="25%"><img id='race' src={'/res_race.png'} alt='img'/></td>
+                <td width="25%"><img className='category-img' id='age' src={'/res_age.png'} alt='img'/></td>
+                <td width="25%"><img className='category-img' id='sex' src={'/res_sex.png'} alt='img'/></td>
+                <td width="25%"><img className='category-img' id='race' src={'/res_race.png'} alt='img'/></td>
               </tr>
               </tbody>
               </table>

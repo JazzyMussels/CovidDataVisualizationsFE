@@ -47,7 +47,7 @@ export default class BoroughAge extends Component {
     render(){
         return(
             <div>
-                <h1> AGE DATA</h1>
+                <h1> {this.props.borough === 'StatenIsland' ? 'Staten Island Results By Age' : this.props.borough + ' Results By Age'} </h1>
                 <button id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
                 <BoroughAgeCharts currentMode={this.props.mode} info={this.state.currentData} mode={this.state.mode} abbr={this.props.abbr}></BoroughAgeCharts>
             </div>

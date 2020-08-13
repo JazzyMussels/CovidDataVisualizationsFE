@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import EachBorough from '../boroughs/EachBorough'
 import {Link} from 'react-router-dom';
+import '../css/borough.css';
 
 export default class Borough extends Component {
     constructor(){
@@ -75,19 +76,19 @@ export default class Borough extends Component {
                this.iterateState(this.state.currentChoice) :
               <div>
               <h1>Select A Borough</h1>
-              <table  width="100%" cellSpacing="10" cellPadding='20'>
+              <table  id='bo-table' width="100%" cellSpacing="10" cellPadding='20'>
                 <tbody>
               <tr>
-                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='Bronx' src={'/bronx.jpg'} alt='img'/></td>
-                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='Brooklyn' src={'/brooklyn.jpg'} alt='img'/></td>
+                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='Bronx' src={'/bronx.jpg'} alt='img'/></td>
+                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='Brooklyn' src={'/brooklyn.jpg'} alt='img'/></td>
               </tr>
               <tr>
-                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='Manhattan' src={'/nyc.jpg'} alt='img'/></td>
-                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='Queens' src={'/queens.jpg'} alt='img'/></td>
+                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='Manhattan' src={'/nyc.jpg'} alt='img'/></td>
+                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='Queens' src={'/queens.jpg'} alt='img'/></td>
               </tr>
               <tr>
-                <td width="25%"><img onClick={(e) => this.handleClick(e)} id='StatenIsland' src={'/staten.jpg'} alt='img'/></td>
-                <td width="25%"><Link to='/home'><img id='Citywide' src={'/citywide.jpg'} alt='img'/></Link></td>
+                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='StatenIsland' src={'/staten.jpg'} alt='img'/></td>
+                <td width="25%"><Link  to='/home'><img className='borough-img' id='Citywide' src={'/citywide.jpg'} alt='img'/></Link></td>
               </tr>
               </tbody>
               </table>

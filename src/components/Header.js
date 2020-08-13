@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
+import { Nav, NavDropdown} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class Header extends Component{

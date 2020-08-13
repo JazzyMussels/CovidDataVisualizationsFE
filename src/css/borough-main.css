@@ -1,0 +1,42 @@
+#leftheader {
+    float: left;
+    width: 55%;
+    background-color: #2A363B;
+    padding-top: 5px;
+}
+#rightheader {
+    float: left;
+    width: 45%;
+    background-color: #2A363B;
+    padding-top: 5px;
+    
+}
+
+#hospital-cases{
+    float: left;
+    width: 53%;
+    margin: auto;
+    background-color: #2A363B;
+    padding-left: 35px;
+}
+
+#death-cases{
+    float: left;
+    width: 47%;
+    margin: auto;
+    background-color: #2A363B;
+    padding-left: 35px;
+}
+
+.b-main-custom-tooltip{
+    border-radius: 50%;
+    background-color: #A8E6CE;
+    height: 360px;
+    width: 360px;
+    
+}
+
+.b-main-label{
+    text-align: center;
+    padding-top: 80px;
+}
