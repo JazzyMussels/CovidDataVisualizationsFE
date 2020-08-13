@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import BoroughMainBar from '../charts/BoroughMainBar'
-import BoroughRace from '../boroughs/BoroughRace'
-import BoroughSex from '../boroughs/BoroughSex'
-import BoroughAge from '../boroughs/BoroughAge'
+import BoroughRace from './BoroughRace'
+import BoroughSex from './BoroughSex'
+import BoroughAge from './BoroughAge'
 
 export default class EachBorough extends Component {
 

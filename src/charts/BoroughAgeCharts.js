@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar} from 'recharts';
 // ScatterChart, Scatter, LabelList
+import '../css/age.css';
 export default class BoroughAgeCharts extends Component {
 
     customTooltip = ({ active, payload, label }) => {

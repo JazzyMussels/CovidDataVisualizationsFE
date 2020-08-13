@@ -2,17 +2,17 @@ import React, { Component} from 'react';
 import './css/App.css';
 import Poverty from './containers/Poverty'
 import Age from './containers/Age'
-import Borough from './containers/Borough'
-import Neighborhoods from './containers/Neighborhoods'
+import Borough from './boroughs/Borough'
+import Neighborhoods from './components/Neighborhoods'
 import Race from './containers/Race'
 import Sex from './containers/Sex'
-import Timeline from './containers/Timeline'
-import Testing from './containers/Testing'
+import Timeline from './components/Timeline'
+import Testing from './components/Testing'
 import {Route, Switch } from 'react-router-dom';
-import Header from './containers/Header'
-import About from './containers/About'
-import Contact from './containers/Contact'
-import Citywide from './containers/Citywide'
+import Header from './components/Header'
+import About from './components/About'
+import Contact from './components/Contact'
+import Citywide from './components/Citywide'
 
 export default class App extends Component{
  
@@ -20,7 +20,6 @@ export default class App extends Component{
     return(
      <div className='App'>
         <Header />
-        <h1 className='title'>NYC Covid-19 Data</h1>
         <Switch>
         <Route path="/" component={Citywide} exact />
         <Route path='/home' component={Citywide}></Route>
@@ -39,17 +38,5 @@ export default class App extends Component{
 
   );
     }
-
-
-
-
 }
 
-// <Poverty />
-//       <Race />
-//       <Age />
-//       <Sex />
-//       <Borough />
-//       <Neighborhoods />
-//       <Timeline />
-//       <Testing />

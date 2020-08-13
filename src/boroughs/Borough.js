@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import EachBorough from '../components/EachBorough'
+import EachBorough from '../boroughs/EachBorough'
 import {Link} from 'react-router-dom';
 
 export default class Borough extends Component {

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar} from 'recharts';
+import '../css/sex.css';
 
 export default class Race extends Component {
     constructor(){
@@ -28,23 +29,36 @@ export default class Race extends Component {
 
           customTooltip = ({ active, payload, label }) => {
             return active && (
-              <div className="custom-tooltip">
-                <h1 className="label" style={{ color: 'black' }}>{label}</h1>
-                <p className="label" style={{ color: 'black' }}>{`${payload[0]['name']} : ${payload[0].value}`}</p>
+              <div className="sex-custom-tooltip">
+                <h1 className="sex-label" style={{ color: '#A7226E' }}>{label}</h1>
+                <h2 className="sex-label" style={{ color: '#A7226E' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
               </div>
             );
         };
+
+        colorLegend = (value, entry) => {
+          const { color } = entry;
+          return <span style={{ color }}>{value}</span>;
+        }
+    
         
           render(){
             let info = this.state.data
             
             return(    
-                <div>
-                <button id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
-                <br></br>
+                <div id='sex'>
+                <div id='sex-header'>
+                    <h2>Results By Sex for All Boroughs</h2>
+                  </div>
+                  <div className='button-container'>
+                  <button id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
+                  </div>
+                  <div id='age-category-header'>
+                    <h3>Number of {this.state.mode[0].toUpperCase() + this.state.mode.slice(1)}</h3>
+                    </div>
                {this.state.mode === 'cases' && <BarChart
-            width={700}
-            height={700}
+            width={1260}
+            height={560}
             data={info["Male"] && [ 
                 {
                 'name': "Male", 'cases': info["Male"]["CASE_COUNT"], 'amt': info["Male"]["CASE_COUNT"]
@@ -54,20 +68,20 @@ export default class Race extends Component {
                 }]
             }
             margin={{
-              top: 5, right: 30, left: 20, bottom: 5,
+              top: 5, right: 20, left: 150, bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke='black' />
-                <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
-                <YAxis stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
-                <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
-                <Legend />
-            <Bar dataKey="cases" fill="#8884d8" />
+            <CartesianGrid strokeDasharray="3 3" stroke='black' fill='#355C7D'/>
+                <XAxis dataKey="name" stroke='#99B898' tick={{ fill: '#99B898', fontSize: 20 }}/>
+                <YAxis stroke='#99B898' tick={{ fill: '#99B898', fontSize: 20 }}/>
+                <Tooltip cursor={{ stroke: '#EC2049', strokeWidth: 2, fill: '#6C5B7B' }} content={this.customTooltip} />
+                <Legend formatter={this.colorLegend}/>
+            <Bar dataKey="cases" fill="#F67280"  />
           </BarChart>
                 }
                 {this.state.mode === 'deaths' &&  <BarChart
-            width={700}
-            height={700}
+            width={1260}
+            height={560}
             data={info["Male"] && [ 
                 {
                 'name': "Male", 'deaths': info["Male"]["DEATH_COUNT"], 'amt': info["Male"]["DEATH_COUNT"]
@@ -77,21 +91,20 @@ export default class Race extends Component {
                 }] 
             }
             margin={{
-              top: 5, right: 30, left: 20, bottom: 5,
+              top: 5, right: 20, left: 150, bottom: 5,
             }}
           >
-            <CartesianGrid stroke="black" strokeDasharray="3 3" />
-            <XAxis dataKey="name" stroke='black' tick={{ fill: 'black', fontSize: 10 }}/>
-            <YAxis stroke='black' tick={{ fill: 'black' }} ticks={[0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000]}/>
-            <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
-            <Legend />
-            
-            <Bar dataKey="deaths" fill="#8884d8" />
+            <CartesianGrid stroke="black" strokeDasharray="3 3" fill='#355C7D'/>
+            <XAxis dataKey="name" stroke='#99B898' tick={{ fill: '#99B898', fontSize: 20 }}/>
+            <YAxis stroke='#99B898' tick={{ fill: '#99B898', fontSize: 20 }} ticks={[0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000]}/>
+            <Tooltip cursor={{ stroke: '#EC2049', strokeWidth: 2, fill: '#6C5B7B' }} content={this.customTooltip}/>
+            <Legend formatter={this.colorLegend}/>
+            <Bar dataKey="deaths" fill="#F67280"  />
           </BarChart>
                 }
                 {this.state.mode === 'hospitilizations' && <BarChart
-            width={700}
-            height={700}
+            width={1260}
+            height={560}
             data={info["Male"] && [ 
                 {
                 'name': "Male", 'hospitilizations': info["Male"]["HOSPITALIZED_COUNT"], 'amt': info["Male"]["HOSPITALIZED_COUNT"]
@@ -101,15 +114,15 @@ export default class Race extends Component {
                 }] 
             }
             margin={{
-              top: 5, right: 30, left: 20, bottom: 5,
+              top: 5, right: 20, left: 150, bottom: 5,
             }}
           >
-            <CartesianGrid stroke='black' tick={{ fill: 'black', fontSize: 10 }} strokeDasharray="3 3" />
-            <XAxis dataKey="name" stroke='black' tick={{ fill: 'black' }}/>
-            <YAxis stroke='black' tick={{ fill: 'black' }} />
-            <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} content={this.customTooltip}/>
-            <Legend />
-            <Bar dataKey="hospitilizations" fill="#8884d8" />
+            <CartesianGrid stroke='black' fill='#355C7D' strokeDasharray="3 3" />
+            <XAxis dataKey="name" stroke='#99B898' tick={{ fill: '#99B898', fontSize: 20 }}/>
+            <YAxis stroke='#99B898' tick={{ fill: '#99B898' }} />
+            <Tooltip cursor={{ stroke: '#EC2049', strokeWidth: 2, fill: '#6C5B7B' }} content={this.customTooltip}/>
+            <Legend formatter={this.colorLegend}/>
+            <Bar dataKey="hospitilizations" fill="#F67280"  />
           </BarChart>
                 }
                 </div>
