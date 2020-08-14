@@ -6,9 +6,16 @@ import BoroughAge from './BoroughAge'
 import '../css/each-borough.css'
 export default class EachBorough extends Component {
 
-    state = {
-        mode: 'all'
+    constructor(){
+        super()
+        
+        this.state={
+            mode: 'all'
+        }
     }
+    
+
+    
 
     handleClick = (event) => {
         this.setState({
@@ -20,7 +27,7 @@ export default class EachBorough extends Component {
     render(){
         let borough = this.props.info.BOROUGH_GROUP
         return(
-            <div id='each-borough'>
+            <div id='each-borough' ref={this.scrollRef}>
                 <h1>
                 {borough === 'Bronx' && `Data For The ${borough}`}
                 {borough === 'StatenIsland' && 'Data For Staten Island'}
@@ -44,7 +51,7 @@ export default class EachBorough extends Component {
             {this.state.mode === 'race' && <BoroughRace borough={borough} abbr={this.props.abbr} mode={this.state.mode}></BoroughRace>}
             {this.state.mode === 'sex' && <BoroughSex borough={borough} abbr={this.props.abbr} mode={this.state.mode}></BoroughSex>}
             {this.state.mode === 'age' && <BoroughAge borough={borough} abbr={this.props.abbr} mode={this.state.mode}></BoroughAge>}
-            {this.props.showCategory ? <button id='all' onClick={(e) => this.handleClick(e)}>See all Categories</button> : <button onClick={this.props.returnClick}>See All Boroughs</button>}
+            {this.props.showCategory ? <button id='all' onClick={(e) => this.handleClick(e)}>See all Categories</button> : <button onClick={this.props.returnClick} >See All Boroughs</button>}
             </div>
         )
     }

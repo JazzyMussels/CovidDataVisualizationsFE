@@ -4,10 +4,18 @@ import '../css/citywide.css';
 
 export default class Citywide extends Component {
 
-    state = {
-        data: {},
-        mode: 'cases'
+  constructor(){
+    super()
+    this.scrollRef = React.createRef();
+    this.state={
+      data: {},
+      mode: 'cases'
     }
+  }
+
+  scrollToBottom = () => {
+    this.scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+  }
 
     componentDidMount = () => {
         fetch('http://localhost:3001/boroughs')
@@ -53,8 +61,11 @@ export default class Citywide extends Component {
         ]
         return(
         <div id='citywide'>
+        <div>
         <img id='main-photo' src={'title.png'} alt='main'/>
-        <div id='title-card'>
+        <img id='arrow-photo' onClick={this.scrollToBottom} src={'downfing.png'}onMouseOut={e => (e.currentTarget.src = "downfing.png")} onMouseOver={e => (e.currentTarget.src = "whitfing.png")}alt='main'/>
+        </div>
+        <div id='title-card' ref={this.scrollRef} >
         <h2>The Impact of Coronavirus Across All 5 Boroughs</h2>
         </div>
         <div id='leftheader'>

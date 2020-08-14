@@ -6,6 +6,7 @@ import '../css/borough.css';
 export default class Borough extends Component {
     constructor(){
         super()
+        this.scrollRef = React.createRef();
         this.state={
             bronx: {},
             brooklyn: {},
@@ -17,6 +18,10 @@ export default class Borough extends Component {
             currentChoice: '',
             showCategory: false
           }
+          }
+
+          scrollToTop = () => {
+            this.scrollRef.current.scrollIntoView({ behavior: 'smooth' })
           }
           
       

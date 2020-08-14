@@ -7,8 +7,8 @@ export default class BoroughMainBar extends Component {
   customTooltip = ({ active, payload }) => {
     return active && (
       <div className="b-main-custom-tooltip">
-        <h2 className="b-main-label" style={{ color: '#A7226E' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
-        <h2 className="b-main-label" style={{ color: '#A7226E' }}>{`${payload[1]['name']} : ${payload[1].value}`}</h2>
+        <h2 className="b-main-label" style={{ color: '#E7E7E7' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
+        <h2 className="b-main-label" style={{ color: '#E7E7E7' }}>{`${payload[1]['name']} : ${payload[1].value}`}</h2>
       </div>
     );
   }

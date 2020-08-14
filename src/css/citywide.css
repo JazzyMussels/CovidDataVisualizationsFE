@@ -34,7 +34,20 @@
 #main-photo{
     padding-bottom: 25px;
     background-color: #2A363B;
+    position: relative;
+    
 }
+
+#arrow-photo{
+    padding-bottom: 25px;
+    /* background-color: #2A363B; */
+    position: absolute;
+    width: 5em;
+    top: 360px;
+    right: 50px;
+    /* border: 5px solid #cdcdcd; */
+}
+
 
 #title-card{
     padding-bottom: 2px;
