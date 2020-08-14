@@ -24,10 +24,16 @@ export default class EachBorough extends Component {
         this.props.updateShowCategory()
     }
 
+    handleReturn = () => {
+        this.props.returnClick()
+        this.props.scroll()
+    }
+
     render(){
         let borough = this.props.info.BOROUGH_GROUP
+        console.log(this.props.showCategory)
         return(
-            <div id='each-borough' ref={this.scrollRef}>
+            <div id='each-borough'>
                 <h1>
                 {borough === 'Bronx' && `Data For The ${borough}`}
                 {borough === 'StatenIsland' && 'Data For Staten Island'}
@@ -51,7 +57,7 @@ export default class EachBorough extends Component {
             {this.state.mode === 'race' && <BoroughRace borough={borough} abbr={this.props.abbr} mode={this.state.mode}></BoroughRace>}
             {this.state.mode === 'sex' && <BoroughSex borough={borough} abbr={this.props.abbr} mode={this.state.mode}></BoroughSex>}
             {this.state.mode === 'age' && <BoroughAge borough={borough} abbr={this.props.abbr} mode={this.state.mode}></BoroughAge>}
-            {this.props.showCategory ? <button id='all' onClick={(e) => this.handleClick(e)}>See all Categories</button> : <button onClick={this.props.returnClick} >See All Boroughs</button>}
+            {this.props.showCategory ? <button id='all' className='return-btn' onClick={(e) => this.handleClick(e)}>See all Categories</button> : <button className='return-btn' onClick={this.handleReturn} >See All Boroughs</button>}
             </div>
         )
     }

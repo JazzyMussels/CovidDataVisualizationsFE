@@ -36,8 +36,8 @@ export default class Citywide extends Component {
     customTooltip = ({ active, payload }) => {
       return active && (
         <div className="custom-tooltip">
-          <h2 className="label" style={{ color: '#A7226E' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
-          <h2 className="label" style={{ color: '#A7226E' }}>{`${payload[1]['name']} : ${payload[1].value}`}</h2>
+          <h2 className="label" style={{ color: '#E7E7E7' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
+          <h2 className="label" style={{ color: '#E7E7E7' }}>{`${payload[1]['name']} : ${payload[1].value}`}</h2>
         </div>
       );
   };
@@ -49,6 +49,7 @@ export default class Citywide extends Component {
 
     render(){
         let info = this.state.data
+        console.log(this.scrollRef)
         let casesHospitalData =[
             {
                 name: 'Total Cases', 'cases': info.CASE_COUNT, 'hospitilizations': info.HOSPITALIZED_COUNT, 'amt': info.HOSPITALIZED_COUNT

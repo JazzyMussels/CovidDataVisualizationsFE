@@ -36,9 +36,9 @@ export default class Testing extends Component {
       customTooltip = ({ active, payload, label }) => {
         return active && (
           <div className="testing-custom-tooltip">
-            <h2 className="testing-label" style={{ color: '#A7226E' }}>Date: {label}</h2>
-            <h3 className="testing-label" style={{ color: '#A7226E' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h3>
-            <h3 className="testing-label" style={{ color: '#A7226E' }}>{`${payload[1]['name']} : ${payload[1].value}`}</h3>
+            <h3 className="testing-label" style={{ color: '#E7E7E7' }}>Date: {label}</h3>
+            <h3 className="testing-label" style={{ color: '#E7E7E7' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h3>
+            <h3 className="testing-label" style={{ color: '#E7E7E7' }}>{`${payload[1]['name']} : ${payload[1].value}`}</h3>
           </div>
         );
     };

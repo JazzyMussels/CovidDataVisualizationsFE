@@ -6,7 +6,6 @@ import '../css/borough.css';
 export default class Borough extends Component {
     constructor(){
         super()
-        this.scrollRef = React.createRef();
         this.state={
             bronx: {},
             brooklyn: {},
@@ -18,10 +17,11 @@ export default class Borough extends Component {
             currentChoice: '',
             showCategory: false
           }
+          this.reffo = React.createRef();
           }
 
           scrollToTop = () => {
-            this.scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+            this.reffo.current.scrollIntoView({ behavior: 'smooth' })
           }
           
       
@@ -37,7 +37,7 @@ export default class Borough extends Component {
               statenIsland: data['StatenIsland'],
               citywide: data['Citywide']
             }) 
-
+            
           })
         }
 
@@ -48,7 +48,7 @@ export default class Borough extends Component {
           let abbrDict = {'Bronx': 'BX_', 'Brooklyn': 'BK_', 'Manhattan': 'MN_', 'Queens': 'QN_', 'StatenIsland': 'SI_'}
             return(
               <div>
-                <EachBorough key={id} info={dict[id]} abbr={abbrDict[id]} showCategory={this.state.showCategory} updateShowCategory={this.updateShowCategory} returnClick={this.returnClick}/>
+                <EachBorough key={id} scroll={this.scrollToTop} scrollRef={this.scrollRef} info={dict[id]} abbr={abbrDict[id]} showCategory={this.state.showCategory} updateShowCategory={this.updateShowCategory} returnClick={this.returnClick}/>
               </div>
             )
           
@@ -74,13 +74,16 @@ export default class Borough extends Component {
           })
           this.iterateState(event.target.id)
         }
+
           render(){
           return(
            <div>
+             <div ref={this.reffo}></div>
               {this.state.showBorough ?
                this.iterateState(this.state.currentChoice) :
-              <div>
-              <h1>Select A Borough</h1>
+               <div>
+              <div> <h1>Select A Borough</h1></div>
+             
               <table  id='bo-table' width="100%" cellSpacing="10" cellPadding='20'>
                 <tbody>
               <tr>

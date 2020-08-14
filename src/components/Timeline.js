@@ -40,10 +40,10 @@ export default class Timeline extends Component {
       
               return active && (
                 <div className="time-custom-tooltip">
-                  <h2 className="time-label" style={{ color: '#A7226E' }}>Date: {label}</h2>
-                  <h3 className="time-label" style={{ color: '#A7226E' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h3>
-                  <h3 className="time-label" style={{ color: '#A7226E' }}>{`${payload[1]['name']} : ${payload[1].value}`}</h3>
-                  <h3 className="time-label" style={{ color: '#A7226E' }}>{`${payload[2]['name']} : ${payload[2].value}`}</h3>
+                  <h3 className="time-label" style={{ color: '#E7E7E7' }}>Date: {label}</h3>
+                  <h3 className="time-label" style={{ color: '#E7E7E7' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h3>
+                  <h3 className="time-label" style={{ color: '#E7E7E7' }}>{`${payload[1]['name']} : ${payload[1].value}`}</h3>
+                  <h3 className="time-label" style={{ color: '#E7E7E7' }}>{`${payload[2]['name']} : ${payload[2].value}`}</h3>
                 </div>
               );
           };
