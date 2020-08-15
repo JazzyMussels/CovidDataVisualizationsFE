@@ -1,14 +1,10 @@
 .sex-charts-custom-tooltip{
-    border-radius: 50%;
     background-color: #33539E;
-    height: 260px;
-    width: 260px;
     display: flex;
     flex-direction: column; 
 }
 
 .sex-charts-label{
-    padding-top: 45px;
     display: flex;
     flex-direction: column;
 }

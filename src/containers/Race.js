@@ -31,8 +31,8 @@ export default class Race extends Component {
       
             return active && (
               <div className="race-custom-tooltip">
-                <h1 className="race-label" style={{ color: '#A7226E' }}>{label}</h1>
-                <h2 className="race-label" style={{ color: '#A7226E' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
+                <h2 className="race-label" style={{ color: '#E7E7E7' }}>{label}</h2>
+                <h2 className="race-label" style={{ color: '#E7E7E7' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
               </div>
             );
         };
@@ -44,14 +44,13 @@ export default class Race extends Component {
         
           render(){
             let info = this.state.data
-          
             return(    
                 <div id='race'>
                  <div id='race-header'>
                     <h2>Results By Race for All Boroughs</h2>
                   </div>
                   <div className='button-container'>
-                  <button id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
+                  <button className='category-btn' id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button className='category-btn' id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button className='category-btn' id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
                   </div>
                   <div id='race-category-header'>
                     <h3>Number of {this.state.mode[0].toUpperCase() + this.state.mode.slice(1)}</h3>

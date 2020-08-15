@@ -7,8 +7,8 @@ export default class BoroughSexCharts extends Component {
   customTooltip = ({ active, payload, label }) => {
     return active && (
       <div className="sex-charts-custom-tooltip">
-        <h2 className="sex-charts-label" style={{ color: '#A7226E' }}>Ages: {label}</h2>
-        <h3 className="sex-charts-label" style={{ color: '#A7226E' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h3>
+        <h2 className="sex-charts-label" style={{ color: '#E7E7E7' }}>sex: {label}</h2>
+        <h2 className="sex-charts-label" style={{ color: '#E7E7E7' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
       </div>
     );
 }

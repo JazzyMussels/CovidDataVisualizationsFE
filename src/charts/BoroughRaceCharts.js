@@ -7,8 +7,8 @@ export default class BoroughRaceCharts extends Component {
   customTooltip = ({ active, payload, label }) => {
     return active && (
       <div className="race-charts-custom-tooltip">
-        <h2 className="race-charts-label" style={{ color: '#A7226E' }}>Ages: {label}</h2>
-        <h3 className="race-charts-label" style={{ color: '#A7226E' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h3 >
+        <h2 className="race-charts-label" style={{ color: '#E7E7E7' }}>race: {label}</h2>
+        <h2 className="race-charts-label" style={{ color: '#E7E7E7' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2 >
       </div>
     );
 };

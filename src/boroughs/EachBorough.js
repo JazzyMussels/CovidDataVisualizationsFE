@@ -13,9 +13,6 @@ export default class EachBorough extends Component {
             mode: 'all'
         }
     }
-    
-
-    
 
     handleClick = (event) => {
         this.setState({
@@ -31,7 +28,7 @@ export default class EachBorough extends Component {
 
     render(){
         let borough = this.props.info.BOROUGH_GROUP
-        console.log(this.props.showCategory)
+
         return(
             <div id='each-borough'>
                 <h1>

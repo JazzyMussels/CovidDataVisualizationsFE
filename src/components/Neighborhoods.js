@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-// import * as d3 from 'd3'
-
-// make a choropeth
+import {Table} from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/neighborhoods.css';
 
 export default class Neighborhood extends Component {
     constructor(){
@@ -23,15 +23,36 @@ export default class Neighborhood extends Component {
           }
         
           render(){
-            // let [bronx, brooklyn, nyc, queens, staten] = [this.state.bronx, this.state.brooklyn, this.state.manhattan, this.state.queens, this.state.statenIsland]
-            // console.log(Object.keys(this.state))
             return(
-            <div className="App">
-              <h1>Neighborhoods</h1>
-              <ol>
-              {Object.keys(this.state).map(zip => <li>{this.state[zip]['NEIGHBORHOOD_NAME']}: {this.state[zip]['COVID_CASE_COUNT']}</li>)}
-              </ol>
-            </div>
-          );
-            }
+              <div>
+              <h1>Neighborhood Specific Data</h1>
+              <div className="neighborhoods">
+              <Table  className='neighborhood-table' striped bordered >
+  <thead>
+    <tr color='#F26B38'>
+      <th color='#F26B38'>Zip Code</th>
+      <th>Neighborhood</th>
+      <th>Borough</th>
+      <th>Total Cases</th>
+      <th>Total Deaths</th>
+      <th>Total Tests</th>
+    </tr>
+  </thead>
+  <tbody>
+  {Object.keys(this.state).map(zip => 
+    <tr>
+    <td>{this.state[zip]['MODIFIED_ZCTA']}</td>
+    <td>{this.state[zip]['NEIGHBORHOOD_NAME']}</td>
+    <td>{this.state[zip]['BOROUGH_GROUP']}</td>
+    <td>{this.state[zip]['COVID_CASE_COUNT']}</td>
+    <td>{this.state[zip]['COVID_DEATH_COUNT']}</td>
+    <td>{this.state[zip]['TOTAL_COVID_TESTS']}</td>
+  </tr>
+    )
+  }
+  </tbody>
+</Table>
+</div>
+</div>
+            )}
         }

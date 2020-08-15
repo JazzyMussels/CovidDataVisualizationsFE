@@ -29,14 +29,9 @@
 }
 
 .b-main-custom-tooltip{
-    border-radius: 50%;
     background-color: #33539E;
-    height: 360px;
-    width: 360px;
-    
 }
 
 .b-main-label{
     text-align: center;
-    padding-top: 80px;
 }

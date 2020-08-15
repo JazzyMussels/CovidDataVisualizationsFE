@@ -5,16 +5,12 @@
 }
 
 .poverty-custom-tooltip{
-    border-radius: 50%;
     background-color: #33539E;
-    height: 260px;
-    width: 260px;
     display: flex;
     flex-direction: column; 
 }
 
 .poverty-label{
-    padding-top: 42px;
     display: flex;
     flex-direction: column;
 }

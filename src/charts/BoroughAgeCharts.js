@@ -7,8 +7,8 @@ export default class BoroughAgeCharts extends Component {
     customTooltip = ({ active, payload, label }) => {
         return active && (
           <div className="age-chart-custom-tooltip">
-            <h2 className="age-chart-label" style={{ color: '#A7226E' }}>Ages: {label}</h2>
-            <h3 className="age-chart-label" style={{ color: '#A7226E' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h3>
+            <h2 className="age-chart-label" style={{ color: '#E7E7E7' }}>ages: {label}</h2>
+            <h2 className="age-chart-label" style={{ color: '#E7E7E7' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
           </div>
         );
     };
