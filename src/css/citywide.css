@@ -27,13 +27,10 @@
     padding-left: 35px;
 }
 
-#citywide {
-    background-color: #2A363B;
-}
+
 
 #main-photo{
     padding-bottom: 25px;
-    background-color: #2A363B;
     position: relative;
     
 }
@@ -49,14 +46,6 @@
 
 #title-card{
     padding-bottom: 2px;
-    background-color: #2A363B;
     margin-right: 40px;
 }
 
-.custom-tooltip{
-    background-color: #33539E;
-}
-
-.label{
-    text-align: center;
-}

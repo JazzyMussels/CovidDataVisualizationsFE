@@ -1,18 +1,3 @@
-.time-custom-tooltip{
-    background-color: #33539E;
-    display: flex;
-    flex-direction: column; 
-}
-
-.time-label{
-    display: flex;
-    flex-direction: column;
-}
-
-.timeline{
-    background-color: #2A363B;
-}
-
 #timeline-header{
     padding-top: 25px;
     margin-left: 120px;

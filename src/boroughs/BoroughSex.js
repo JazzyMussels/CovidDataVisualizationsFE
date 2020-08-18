@@ -5,7 +5,6 @@ export default class BoroughSex extends Component {
     state = {
         data : {},
         mode: 'cases',
-        borough: this.props.borough,
         currentData: {}
     }
 
@@ -46,7 +45,9 @@ export default class BoroughSex extends Component {
             <div>
                 <h1> {this.props.borough === 'StatenIsland' ? 'Staten Island Results By Sex' : this.props.borough + ' Results By Sex'}</h1>
                 <button className='category-btn' id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button className='category-btn' id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button className='category-btn' id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
-                <BoroughSexCharts currentMode={this.props.mode} info={this.state.currentData} mode={this.state.mode} abbr={this.props.abbr} ></BoroughSexCharts>
+                <BoroughSexCharts chartInfo={this.props.chartInfo} info={this.state.currentData} 
+                                  mode={this.state.mode} abbr={this.props.abbr} 
+                />
             </div>
         )
     }

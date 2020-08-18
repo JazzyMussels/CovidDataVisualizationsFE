@@ -4,14 +4,3 @@
 
 }
 
-.sex-custom-tooltip{
-    background-color: #33539E;
-    display: flex;
-    flex-direction: column; 
-}
-
-.sex-label{
-    display: flex;
-    flex-direction: column;
-}
-

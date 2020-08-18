@@ -3,14 +3,3 @@
     margin-left: 60px;
 
 }
-
-.poverty-custom-tooltip{
-    background-color: #33539E;
-    display: flex;
-    flex-direction: column; 
-}
-
-.poverty-label{
-    display: flex;
-    flex-direction: column;
-}

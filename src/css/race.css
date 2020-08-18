@@ -3,14 +3,3 @@
     margin-left: 60px;
 
 }
-
-.race-custom-tooltip{
-    background-color: #33539E;
-    display: flex;
-    flex-direction: column; 
-}
-
-.race-label{
-    display: flex;
-    flex-direction: column;
-}

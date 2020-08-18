@@ -12,16 +12,15 @@ export default class Borough extends Component {
             manhattan: {},
             queens: {},
             statenIsland: {},
-            citywide: {},
             showBorough: false,
             currentChoice: '',
             showCategory: false
           }
-          this.reffo = React.createRef();
+          this.pageRef = React.createRef();
           }
 
           scrollToTop = () => {
-            this.reffo.current.scrollIntoView({ behavior: 'smooth' })
+            this.pageRef.current.scrollIntoView({ behavior: 'smooth' })
           }
           
       
@@ -34,24 +33,10 @@ export default class Borough extends Component {
               brooklyn: data['Brooklyn'],
               manhattan: data['Manhattan'],
               queens: data['Queens'],
-              statenIsland: data['StatenIsland'],
-              citywide: data['Citywide']
+              statenIsland: data['StatenIsland']
             }) 
             
           })
-        }
-
-        iterateState = (id) => {
-          let dict = {'Bronx': this.state.bronx, 'Brooklyn': this.state.brooklyn, 
-                      'Manhattan': this.state.manhattan, 'Queens': this.state.queens, 
-                      'StatenIsland': this.state.statenIsland, 'Citywide': this.state.citywide}
-          let abbrDict = {'Bronx': 'BX_', 'Brooklyn': 'BK_', 'Manhattan': 'MN_', 'Queens': 'QN_', 'StatenIsland': 'SI_'}
-            return(
-              <div>
-                <EachBorough key={id} scroll={this.scrollToTop} scrollRef={this.scrollRef} info={dict[id]} abbr={abbrDict[id]} showCategory={this.state.showCategory} updateShowCategory={this.updateShowCategory} returnClick={this.returnClick}/>
-              </div>
-            )
-          
         }
 
         updateShowCategory = () => {
@@ -75,10 +60,26 @@ export default class Borough extends Component {
           this.iterateState(event.target.id)
         }
 
+        iterateState = (id) => {
+          let dict = {'Bronx': this.state.bronx, 'Brooklyn': this.state.brooklyn, 
+                      'Manhattan': this.state.manhattan, 'Queens': this.state.queens, 
+                      'StatenIsland': this.state.statenIsland, 'Citywide': this.state.citywide}
+          let abbrDict = {'Bronx': 'BX_', 'Brooklyn': 'BK_', 'Manhattan': 'MN_', 'Queens': 'QN_', 'StatenIsland': 'SI_'}
+            return(
+              <div>
+                <EachBorough scroll={this.scrollToTop} chartInfo={this.props.chartInfo} 
+                             dualChartInfo={this.props.dualChartInfo} info={dict[id]} 
+                             abbr={abbrDict[id]} showCategory={this.state.showCategory} 
+                             updateShowCategory={this.updateShowCategory} returnClick={this.returnClick}
+                />
+              </div>
+            ) 
+        }
+
           render(){
           return(
            <div>
-             <div ref={this.reffo}></div>
+             <div ref={this.pageRef}></div>
               {this.state.showBorough ?
                this.iterateState(this.state.currentChoice) :
                <div>

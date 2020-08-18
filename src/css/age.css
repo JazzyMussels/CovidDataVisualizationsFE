@@ -4,26 +4,3 @@
 
 }
 
-.age-custom-tooltip{
-    background-color: #33539E;
-    display: flex;
-    flex-direction: column; 
-}
-
-.age-label{
-    display: flex;
-    flex-direction: column;
-}
-
-.category-btn{
-    border: 3px solid #474747;;
-    background-color: #355C7D;
-    font-size: 16px;
-    text-align: center;
-    color: #F26B38;
-  }
-
-  .category-btn:hover{
-    box-shadow: 0 15px 35px #45ADA8;
-    border: 5px solid #9DE0AD;
-}

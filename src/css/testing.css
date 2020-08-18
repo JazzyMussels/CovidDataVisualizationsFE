@@ -2,18 +2,3 @@
     padding-top: 25px;
     margin-left: 120px;
 }
-
-.testing{
-    background-color: #2A363B;
-}
-
-.testing-custom-tooltip{
-    background-color: #33539E;
-    display: flex;
-    flex-direction: column; 
-}
-
-.testing-label{
-    display: flex;
-    flex-direction: column;
-}

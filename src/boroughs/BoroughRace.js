@@ -5,7 +5,6 @@ export default class BoroughRace extends Component {
     state = {
         data : {},
         mode: 'cases',
-        borough: this.props.borough,
         currentData: {}
     }
 
@@ -42,14 +41,14 @@ export default class BoroughRace extends Component {
     })
 }
 
-
-
     render(){
         return(
         <div>
             <h1> {this.props.borough === 'StatenIsland' ? 'Staten Island Results By Race' : this.props.borough + ' Results By Race'}</h1>
             <button className='category-btn' id='cases' onClick={e => this.updateMode(e.target.id)}>Cases</button> | <button className='category-btn' id='hospitilizations' onClick={e => this.updateMode(e.target.id)}>Hospitilizations</button>  | <button className='category-btn' id='deaths' onClick={e => this.updateMode(e.target.id)}>Deaths</button>
-            <BoroughRaceCharts currentMode={this.props.mode} info={this.state.currentData} mode={this.state.mode} abbr={this.props.abbr}></BoroughRaceCharts>
+            <BoroughRaceCharts chartInfo={this.props.chartInfo} info={this.state.currentData}
+                               mode={this.state.mode} abbr={this.props.abbr}
+            />
         </div>)
     }
 }

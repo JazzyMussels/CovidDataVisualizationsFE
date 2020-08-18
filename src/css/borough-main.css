@@ -1,13 +1,11 @@
 #leftheader {
     float: left;
     width: 55%;
-    background-color: #2A363B;
     padding-top: 5px;
 }
 #rightheader {
     float: left;
     width: 45%;
-    background-color: #2A363B;
     padding-top: 5px;
     
 }
@@ -16,7 +14,6 @@
     float: left;
     width: 53%;
     margin: auto;
-    background-color: #2A363B;
     padding-left: 35px;
 }
 
@@ -24,14 +21,6 @@
     float: left;
     width: 47%;
     margin: auto;
-    background-color: #2A363B;
     padding-left: 35px;
 }
 
-.b-main-custom-tooltip{
-    background-color: #33539E;
-}
-
-.b-main-label{
-    text-align: center;
-}

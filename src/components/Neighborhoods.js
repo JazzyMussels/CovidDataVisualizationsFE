@@ -7,6 +7,7 @@ export default class Neighborhood extends Component {
     constructor(){
         super()
         this.state={
+          data: {}
           }
           }
         
@@ -14,12 +15,10 @@ export default class Neighborhood extends Component {
             fetch('http://localhost:3001/neighborhoods')
             .then(resp => resp.json())
             .then(data => {
-                for (const key in data){
               this.setState({
-              [key]: data[key],
+              data: data
             })
-        }
-          })
+        })
           }
         
           render(){
@@ -39,14 +38,14 @@ export default class Neighborhood extends Component {
     </tr>
   </thead>
   <tbody>
-  {Object.keys(this.state).map(zip => 
+  {Object.keys(this.state.data).map(zip => 
     <tr>
-    <td>{this.state[zip]['MODIFIED_ZCTA']}</td>
-    <td>{this.state[zip]['NEIGHBORHOOD_NAME']}</td>
-    <td>{this.state[zip]['BOROUGH_GROUP']}</td>
-    <td>{this.state[zip]['COVID_CASE_COUNT']}</td>
-    <td>{this.state[zip]['COVID_DEATH_COUNT']}</td>
-    <td>{this.state[zip]['TOTAL_COVID_TESTS']}</td>
+    <td>{this.state.data[zip]['MODIFIED_ZCTA']}</td>
+    <td>{this.state.data[zip]['NEIGHBORHOOD_NAME']}</td>
+    <td>{this.state.data[zip]['BOROUGH_GROUP']}</td>
+    <td>{this.state.data[zip]['COVID_CASE_COUNT']}</td>
+    <td>{this.state.data[zip]['COVID_DEATH_COUNT']}</td>
+    <td>{this.state.data[zip]['TOTAL_COVID_TESTS']}</td>
   </tr>
     )
   }
