@@ -4,6 +4,8 @@ import '../css/borough-main.css';
 
 export default function BoroughMainBar(props) {
     let info = props.info
+    // the data from props is parsed into the appropriate format for 
+    // the recharts library to handle
     let casesHospitalData = [
         {
             name: 'Cases/Hospitilizations',
@@ -29,6 +31,7 @@ export default function BoroughMainBar(props) {
             <div id='rightheader'>
                 <h3>Total Cases Compared to Deaths</h3>
             </div>
+            {/* The appropriate charts are rendered for the total information from a given borough */}
             <div id='hospital-cases'>
                 {props.dualChartInfo(BarChart, Bar, 600, 400, casesHospitalData, 'cases', 'hospitilizations')}
             </div>

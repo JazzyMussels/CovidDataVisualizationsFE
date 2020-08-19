@@ -4,11 +4,13 @@ import '../css/demographic.css';
 
 export default class Demographic extends Component {
 
+    //the mode in state will determine which category is shown(deaths, hospitilizations, or cases)
     state = {
         data: {},
         mode: 'cases'
     }
 
+    // Here we grab the correct data according to the url prop passed in and pass the data response into state
     componentDidMount() {
         this.props.url && fetch(`http://localhost:3001/${this.props.url}`)
             .then(resp => resp.json())
@@ -31,8 +33,7 @@ export default class Demographic extends Component {
         return (
             <div id='demographic'>
                 <div id='header'>
-                    <h2>Results By {this.props.demo}
-                        for All Boroughs</h2>
+                    <h2>Results By {this.props.demo} For All Boroughs</h2>
                 </div>
                 <div className='button-container'>
                     <button
@@ -52,14 +53,12 @@ export default class Demographic extends Component {
                 </div>
 
                 <div id='category-header'>
-                    <h3>Number of {this
-                            .state
-                            .mode[0]
-                            .toUpperCase() + this
-                            .state
-                            .mode
-                            .slice(1)}</h3>
+                    <h3>Number of {this.state.mode[0].toUpperCase() + this.state.mode.slice(1)}</h3>
                 </div>
+                {/* Here each graph for borough-wide demographic categories is conditionally rendered 
+                    based on which mode is selected in state, and upon which demographic route has been 
+                    chosen(age,sex,etc); Sex is a unique case as it the only category that does
+                    not render a line chart to show cases */}
                 {this.props.demo === 'Sex'
                     ? this.state.mode === 'cases' && this
                         .props

@@ -3,6 +3,8 @@ import {Nav, NavDropdown} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Header() {
+    //this component sets up the navbar used across the site with a lot of
+    //help from react-bootstrap
     return (
         <nav
             className="navbar navbar-expand-md navbar-dark bg-dark sticky-top"

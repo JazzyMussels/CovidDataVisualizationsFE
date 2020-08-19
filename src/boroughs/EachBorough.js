@@ -5,26 +5,27 @@ import '../css/each-borough.css'
 
 export default class EachBorough extends Component {
 
+    // this will toggle between showing an option to pick a category(race, age, sex) and showing 
+    //one of said categories
     state = {
         mode: 'all'
     }
 
+    //click handler for the toggle to determine what information is being shown
     handleClick = (event) => {
         this.setState({mode: event.target.id})
-        this
-            .props
-            .updateShowCategory()
+        this.props.updateShowCategory()
     }
 
+    //returns to the main borough selection page at the top based on the ref in the parent component
     handleReturn = () => {
-        this
-            .props
-            .returnClick()
-        this
-            .props
-            .scroll()
+        this.props.returnClick()
+        this.props.scroll()
     }
 
+    //the child component contains the graph information and is meant to be re-useable by all demographic types;
+    //as a result it was necessary to specify axis ticks for each category of each demographic. The next
+    //several methods set the ticks according to the needs of each data set based on the particular borough
     setRaceCaseTicks = () => {
         switch (this.props.abbr) {
             case 'BX_':
@@ -138,10 +139,14 @@ export default class EachBorough extends Component {
                     {borough === 'StatenIsland' && 'Data For Staten Island'}
                     {(borough === 'Brooklyn' || borough === 'Queens' || borough === 'Manhattan') && `Data For ${borough}`}
                 </h1>
+                {/* The main bar will render boroughwide data not separated by demographic */}
                 <BoroughMainBar
                     key={this.props.abbr}
                     info={this.props.info}
-                    dualChartInfo={this.props.dualChartInfo}/> {this.state.mode === 'all' && <div id='category-div'>
+                    dualChartInfo={this.props.dualChartInfo}/> 
+                    {/* with mode set to all, the series of buttons is rendered to prompt
+                        the user to select a category */}
+                    {this.state.mode === 'all' && <div id='category-div'>
                     <h2>Select a Category</h2>
                     <table width="100%" cellSpacing="10" cellPadding='20'>
                         <tbody>
@@ -167,8 +172,9 @@ export default class EachBorough extends Component {
                             </tr>
                         </tbody>
                     </table>
-                </div>
-}
+                </div>}
+                {/* The reuseable component is rendered with the appropriate information based on demographic category;
+                    the appropriate ticks, charts, categories, url, and borough information are passed down  */}
                 {this.state.mode === 'race' && <BoroughDemographic
                     url={'borough_race'}
                     demo={'Race'}
@@ -199,6 +205,9 @@ export default class EachBorough extends Component {
                     borough={borough}
                     abbr={this.props.abbr}
                     categories={['0-17', '18-44', '45-64', '65-74', '75+']}></BoroughDemographic>}
+                
+                {/* this toggle determines whether the button directs the user back to the category selection page 
+                    or to the borough selection page */}
                 {this.props.showCategory
                     ? <button id='all' className='return-btn' onClick={(e) => this.handleClick(e)}>See all Categories</button>
                     : <button className='return-btn' onClick={this.handleReturn}>See All Boroughs</button>}

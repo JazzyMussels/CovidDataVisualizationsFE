@@ -4,6 +4,11 @@ import {Link} from 'react-router-dom';
 import '../css/borough.css';
 
 export default class Borough extends Component {
+
+    // showBorough will determine whether a specific borough's data is rendered or not
+    // currentChoice will toggle between each borough, and showCategory will be passed
+    // down to a child component to determine whether or not the category options are displayed;
+    // A ref is also created to push a user to the top of the page upon a button click
     constructor() {
         super()
         this.state = {
@@ -19,11 +24,10 @@ export default class Borough extends Component {
         this.pageRef = React.createRef();
     }
 
+    //function to invoke the page scroll based on the ref, the attribute 'current' lets
+    //a user access the given DOM node
     scrollToTop = () => {
-        this
-            .pageRef
-            .current
-            .scrollIntoView({behavior: 'smooth'})
+        this.pageRef.current.scrollIntoView({behavior: 'smooth'})
     }
 
     componentDidMount() {
@@ -31,16 +35,17 @@ export default class Borough extends Component {
             .then(resp => resp.json())
             .then(data => {
                 this.setState({bronx: data["Bronx"], brooklyn: data['Brooklyn'], manhattan: data['Manhattan'], queens: data['Queens'], statenIsland: data['StatenIsland']})
-
             })
     }
 
+    //a boolean toggle to show/hide the category options
     updateShowCategory = () => {
         this.setState({
             showCategory: !this.state.showCategory
         })
     }
 
+    //handles the return to borough selection page from a specific borough
     returnClick = () => {
         this.setState({
             showBorough: !this.state.showBorough,
@@ -48,6 +53,9 @@ export default class Borough extends Component {
         })
     }
 
+    //handles the switch from the borough selection page to a specific borough
+    //and invokes the function to pass down the appropriate information to the
+    //child component based on the id obtained from the passed in event
     handleClick = (event) => {
         this.setState({
             showBorough: !this.state.showBorough,
@@ -62,9 +70,10 @@ export default class Borough extends Component {
             'Brooklyn': this.state.brooklyn,
             'Manhattan': this.state.manhattan,
             'Queens': this.state.queens,
-            'StatenIsland': this.state.statenIsland,
-            'Citywide': this.state.citywide
+            'StatenIsland': this.state.statenIsland
         }
+        //this will be needed in the child component as the data categories have
+        //a prefix based on the borough
         let abbrDict = {
             'Bronx': 'BX_',
             'Brooklyn': 'BK_',
@@ -72,6 +81,9 @@ export default class Borough extends Component {
             'Queens': 'QN_',
             'StatenIsland': 'SI_'
         }
+        //using the id from a button click and the above key/value pairs, we pass the
+        //correct data from state to the child component, along with the ref, the particulars
+        //of the graphs to be rendered, and the various event handlers to toggle what data is shown 
         return (
             <div>
                 <EachBorough
@@ -90,7 +102,10 @@ export default class Borough extends Component {
     render() {
         return (
             <div>
+                {/* the ref that will ensure the user is returned to the top of the page on return click */}
                 <div ref={this.pageRef}></div>
+                {/* Here we toggle between the specific borough information and a table which lets
+                    the user select from among all the boroughs */}
                 {this.state.showBorough
                     ? this.iterateState(this.state.currentChoice)
                     : <div>

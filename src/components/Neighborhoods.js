@@ -17,6 +17,7 @@ export default class Neighborhood extends Component {
             })
     }
 
+    //This component renders a table that shows data according to specific zip codes/neighborhoods
     render() {
         return (
             <div>
@@ -34,17 +35,14 @@ export default class Neighborhood extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {Object
-                                .keys(this.state.data)
-                                .map(zip => <tr>
+                            {Object.keys(this.state.data).map(zip => <tr>
                                     <td>{this.state.data[zip]['MODIFIED_ZCTA']}</td>
                                     <td>{this.state.data[zip]['NEIGHBORHOOD_NAME']}</td>
                                     <td>{this.state.data[zip]['BOROUGH_GROUP']}</td>
                                     <td>{this.state.data[zip]['COVID_CASE_COUNT']}</td>
                                     <td>{this.state.data[zip]['COVID_DEATH_COUNT']}</td>
                                     <td>{this.state.data[zip]['TOTAL_COVID_TESTS']}</td>
-                                </tr>)
-}
+                                </tr>)}
                         </tbody>
                     </Table>
                 </div>

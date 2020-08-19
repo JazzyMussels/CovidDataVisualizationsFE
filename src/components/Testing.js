@@ -17,13 +17,14 @@ export default class Testing extends Component {
         data: []
     }
 
+    //for testing, we fetch the data and parse it into total and positive tests to achieve the proper format for the recharts 
+    //library. A composed chart will be rendered showing the comparison of postive and total tests by date
     componentDidMount() {
         fetch('http://localhost:3001/tests')
             .then(resp => resp.json())
             .then(data => {
                 let dates = []
-                Object
-                    .keys(data)
+                Object.keys(data)
                     .forEach(date => dates.push({'name': date, 'total tests': data[date]["TOTAL_TESTS"], 'positive tests': data[date]["POSITIVE_TESTS"]
                     }))
                 this.setState({data: dates})
@@ -48,6 +49,10 @@ export default class Testing extends Component {
                         bottom: 20,
                         left: 100
                     }}>
+                        {/* The ticks below create the appropriate range for these specific x-axis
+                            values; the custom tool-tip and legend formats are passed down from
+                            the parent component; a bar and a line chart are combined to
+                            show the different categories of data  */}
                         <CartesianGrid stroke="black" fill='#6C5B7B'/>
                         <XAxis
                             type="number"

@@ -22,8 +22,11 @@ import Demographic from './containers/Demographic'
 
 export default function App() {
 
+    // sets up a consistent style for the tool-tip hover description of each graph
     function customTooltip({active, payload, label}) {
         let items = []
+        // the payload represents a collection of key/value pairs containing information to be included in each graph; for
+        // each pair, we create a styled html element.
         for (let i = 0; i < payload.length; i++) {
             items.push(
                 <h2
@@ -34,6 +37,7 @@ export default function App() {
                 }}>{`${payload[i]['name']} : ${payload[i].value}`}</h2>
             )
         }
+        // if the user is actively hovering over the graph, update the tool-tip to include each item we pushed into the array from the payload
         return active && (
             <div className="custom-tooltip">
                 <h2
@@ -46,15 +50,19 @@ export default function App() {
         );
     };
 
-    function colorLegend(value, entry) {
-        const {color} = entry;
+    // matches the color of the data value in the legend to the color on the graph
+    function colorLegend(value, color) {
         return <span style={{
             color
         }}>{value}</span>;
     }
 
+    // sets up the structure of the single data-type chart that will be rendered;
     function chartInfo(ComponentType, mode, info, value_type, cat1, cat2, cat3, cat4, cat5, ticks = []) {
         let dataArray = []
+        // for each category passed in, the data needs to have keys representing the name, 
+        // the mode(whether it's cases, deaths, etc), and the amount to be rendered on the graph; It's
+        //structured here so it interacts well with the recharts library
         for (const cat of[cat1,
             cat2,
             cat3,
@@ -65,6 +73,9 @@ export default function App() {
                 })
             }
         }
+        // the ComponentType will generally be either a LineChart or a BarChart, determined 
+        // at the time of invocation; the formatting from the custom tool-tip and legend coloring functions
+        // is also included here
         return (
             <ComponentType
                 width={1260}
@@ -107,6 +118,8 @@ export default function App() {
         )
     }
 
+    // this is similar to the above function, but renders charts that handle two separate categories of 
+    // information; the SubComponentType represents a Bar or a Line, depending on which typr of chart is used
     function dualChartInfo(MainComponentType, SubComponentType, width, height, info, mode1, mode2) {
         return (
             <MainComponentType
@@ -157,6 +170,17 @@ export default function App() {
                     path='/boroughs'
                     render={() => <Borough dualChartInfo={dualChartInfo} chartInfo={chartInfo}/>}/>
                 <Route
+                    path='/timeline'
+                    render={() => <Timeline customTooltip={customTooltip} colorLegend={colorLegend}/>}/>
+                <Route path='/about' component={About}></Route>
+                <Route
+                    path='/testing'
+                    render={() => <Testing customTooltip={customTooltip} colorLegend={colorLegend}/>}/>
+
+                    {/* The four subsequent routes render a re-useable component and have specific info
+                        passed down related to the demographic category; each one has a unique url to fetch the appropriate data; 
+                        the Tick props format the Y-axis values of each graph based on the scope of the data */}
+                <Route
                     path='/by_sex'
                     render={() => <Demographic
                     demo={'Sex'}
@@ -197,13 +221,6 @@ export default function App() {
                     chartInfo={chartInfo}
                     categories={['Asian/Pacific-Islander', "Black/African-American", "Hispanic/Latino", "White", undefined]}/>}/>
                 <Route path='/by_neighborhood' component={Neighborhoods}></Route>
-                <Route
-                    path='/timeline'
-                    render={() => <Timeline customTooltip={customTooltip} colorLegend={colorLegend}/>}/>
-                <Route path='/about' component={About}></Route>
-                <Route
-                    path='/testing'
-                    render={() => <Testing customTooltip={customTooltip} colorLegend={colorLegend}/>}/>
             </Switch>
         </div>
 

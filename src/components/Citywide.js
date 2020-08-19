@@ -4,6 +4,7 @@ import '../css/citywide.css';
 
 export default class Citywide extends Component {
 
+    //a ref is created, it will be used to bring a particular div into view on a button click
     constructor() {
         super()
         this.scrollRef = React.createRef();
@@ -12,11 +13,10 @@ export default class Citywide extends Component {
         }
     }
 
+    //this function brings the ref into view, the attribute 'current' lets
+    //a user access the given DOM node
     scrollToBottom = () => {
-        this
-            .scrollRef
-            .current
-            .scrollIntoView({behavior: 'smooth'})
+        this.scrollRef.current.scrollIntoView({behavior: 'smooth'})
     }
 
     componentDidMount = () => {
@@ -49,6 +49,9 @@ export default class Citywide extends Component {
             <div id='citywide'>
                 <div>
                     <img id='main-photo' src={'title.png'} alt='main'/>
+                    {/* here the function is called so that clicking the image scrolls the user to the ref point;
+                        we also change the source of the image(with mouseOut and Over) when the user highlights 
+                        it to amplify the signal that it ought to be clicked */}
                     <img
                         id='arrow-photo'
                         onClick={this.scrollToBottom}
@@ -57,6 +60,7 @@ export default class Citywide extends Component {
                         onMouseOver={e => (e.currentTarget.src = "whitfing.png")}
                         alt='main'/>
                 </div>
+                {/* here is the reference point for the page scroll */}
                 <div id='title-card' ref={this.scrollRef}>
                     <h2>The Impact of Coronavirus Across All 5 Boroughs</h2>
                 </div>
@@ -66,6 +70,7 @@ export default class Citywide extends Component {
                 <div id='rightheader'>
                     <h3>Total Cases Compared to Deaths</h3>
                 </div>
+                {/* Here the particular charts are rendered for dual categories, with specified widths and heights(580) */}
                 <div id='hospital-cases'>
                     {this
                         .props

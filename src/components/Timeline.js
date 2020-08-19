@@ -18,13 +18,14 @@ export default class Timeline extends Component {
         data: []
     }
 
+    //The data is fetched and then parsed to make it play nicely with the recharts library structure; 
+    //for the timeline we want to see cases, hospitilizations, and deaths in one composed chart
     componentDidMount() {
         fetch('http://localhost:3001/timeline')
             .then(resp => resp.json())
             .then(data => {
                 let dates = []
-                Object
-                    .keys(data)
+                Object.keys(data)
                     .forEach(date => dates.push({'name': date, 'cases': data[date]["CASE_COUNT"], 'hospitilizations': data[date]["HOSPITALIZED_COUNT"], 'deaths': data[date]["DEATH_COUNT"]
                     }))
                 this.setState({data: dates})
@@ -49,6 +50,10 @@ export default class Timeline extends Component {
                         bottom: 20,
                         left: 100
                     }}>
+                        {/* The ticks below create the appropriate range for these specific x-axis
+                            values; the custom tool-tip and legend formats are passed down from
+                            the parent component; an area, bar, and line charts are combined to
+                            show the different categories of data  */}
                         <CartesianGrid stroke="black" fill='#6C5B7B'/>
                         <XAxis
                             type="number"
