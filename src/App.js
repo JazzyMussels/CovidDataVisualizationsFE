@@ -1,11 +1,7 @@
 import React, { Component} from 'react';
 import './css/App.css';
-import Poverty from './containers/Poverty'
-import Age from './containers/Age'
 import Borough from './boroughs/Borough'
 import Neighborhoods from './components/Neighborhoods'
-import Race from './containers/Race'
-import Sex from './containers/Sex'
 import Timeline from './components/Timeline'
 import Testing from './components/Testing'
 import {Route, Switch, Redirect} from 'react-router-dom';
@@ -13,16 +9,19 @@ import Header from './components/Header'
 import About from './components/About'
 import Citywide from './components/Citywide'
 import {XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar, Line, LineChart} from 'recharts';
+import Demographic from './containers/Demographic'
 
 export default class App extends Component{
 
     customTooltip = ({ active, payload, label }) => {
+      let items = []
+      for(let i=0;i<payload.length;i++){
+        items.push(<h2 className="label" style={{ color: '#E7E7E7' }}>{`${payload[i]['name']} : ${payload[i].value}`}</h2>)
+      }
       return active && (
         <div className="custom-tooltip">
           <h2 className="label" style={{ color: '#E7E7E7' }}>{label}</h2>
-          <h2 className="label" style={{ color: '#E7E7E7' }}>{`${payload[0]['name']} : ${payload[0].value}`}</h2>
-          {payload[1] && <h2 className="label" style={{ color: '#E7E7E7' }}>{`${payload[1]['name']} : ${payload[1].value}`}</h2>}
-          {payload[2] && <h2 className="label" style={{ color: '#E7E7E7' }}>{`${payload[2]['name']} : ${payload[2].value}`}</h2>}
+          {[...items]}
         </div>
       );
   };
@@ -32,7 +31,7 @@ export default class App extends Component{
       return <span style={{ color }}>{value}</span>;
     }
 
-    chartInfo = (ComponentType, mode, info, value_type, cat1, cat2, cat3, cat4, cat5=undefined, ticks=[]) => {
+    chartInfo = (ComponentType, mode, info, value_type, cat1, cat2, cat3, cat4, cat5, ticks=[]) => {
       let dataArray = []
       for(const cat of [cat1, cat2, cat3, cat4, cat5]){
         if (info[cat1] && cat !== undefined){
@@ -81,7 +80,7 @@ export default class App extends Component{
         }
 
 
-  render(){
+  render(){   
     return(
      <div className='App'>
         <Header />
@@ -89,12 +88,24 @@ export default class App extends Component{
         <Route exact path="/"><Redirect to="/home" /></Route>
         <Route path='/home' render={() => <Citywide dualChartInfo={this.dualChartInfo} />} />
         <Route path='/boroughs' render={() => <Borough dualChartInfo={this.dualChartInfo} chartInfo={this.chartInfo} />} />
-        <Route path='/by_sex' render={() => <Sex chartInfo={this.chartInfo} />}/>
-        <Route path='/by_age' render={() => <Age chartInfo={this.chartInfo} />}/>
-        <Route path='/by_income' render={() => <Poverty chartInfo={this.chartInfo} />}/>
+        <Route path='/by_sex' render={() => <Demographic  demo={'Sex'} url={'sex_groups'} deathTicks={[...Array(12).keys() ].map( i => i*1000)} 
+                                                          caseTicks={[]} hospitalTicks={[]} 
+                                                          chartInfo={this.chartInfo} categories={["Male", "Female", undefined, undefined, undefined]}/>}
+                                            />
+        <Route path='/by_age' render={() => <Demographic  demo={'Age'} url={'age_groups'} deathTicks={[...Array(21).keys() ].map( i => i*500)} 
+                                                          caseTicks={[]} hospitalTicks={[...Array(14).keys() ].map( i => i*1500)} 
+                                                          chartInfo={this.chartInfo} categories={['0-17', '18-44', '45-64', '65-74', '75+']}/>}
+                                            />
+        <Route path='/by_income' render={() => <Demographic  demo={'Income'} url={'poverty_groups'} deathTicks={[]} 
+                                                          caseTicks={[]} hospitalTicks={[...Array(21).keys() ].map( i => i*1100)} 
+                                                          chartInfo={this.chartInfo} categories={["Low poverty", "Medium poverty", "High poverty", "Very high poverty", undefined]}/>}
+                                            />
+        <Route path='/by_race' render={() => <Demographic  demo={'Race'} url={'race_groups'} deathTicks={[]} 
+                                                          caseTicks={[...Array(14).keys() ].map( i => i*3000)} hospitalTicks={[...Array(16).keys() ].map( i => i*1000)} 
+                                                          chartInfo={this.chartInfo} categories={['Asian/Pacific-Islander', "Black/African-American", "Hispanic/Latino", "White", undefined]}/>}
+                                            />
         <Route path='/by_neighborhood' component={Neighborhoods}></Route>
-        <Route path='/timeline' render={() => <Timeline customTooltip={this.customTooltip} colorLegend={this.colorLegend} />} />
-        <Route path='/by_race' render={() => <Race chartInfo={this.chartInfo} />}/>
+        <Route path='/timeline' render={() => <Timeline customTooltip={this.customTooltip} colorLegend={this.colorLegend} />} />    
         <Route path='/about' component={About}></Route>
         <Route path='/testing' render={() => <Testing customTooltip={this.customTooltip} colorLegend={this.colorLegend} />} />
         </Switch>

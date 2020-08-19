@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import BoroughMainBar from '../charts/BoroughMainBar'
-import BoroughRace from './BoroughRace'
-import BoroughSex from './BoroughSex'
-import BoroughAge from './BoroughAge'
+// import BoroughRace from './BoroughRace'
+// import BoroughSex from './BoroughSex'
+// import BoroughAge from './BoroughAge'
+import BoroughDemographic from './BoroughDemographic'
 import '../css/each-borough.css'
 
 export default class EachBorough extends Component {
@@ -26,9 +27,109 @@ export default class EachBorough extends Component {
         this.props.scroll()
     }
 
+    setRaceCaseTicks = () => {
+        switch (this.props.abbr){
+          case 'BX_':
+            return [...Array(18).keys() ].map( i => i*1000)
+          case 'BK_':
+            return [...Array(13).keys() ].map( i => i*1000)
+          case 'MN_':
+            return [...Array(7).keys() ].map( i => i*1000)
+          case 'QN_':
+            return [...Array(13).keys() ].map( i => i*1000)
+          case 'SI_':
+            return [...Array(7).keys() ].map( i => i*1000)
+          default:
+            return []
+      }
+      }
+      
+      setRaceHospitalTicks = () => {
+        switch (this.props.abbr){
+          case 'BX_':
+            return [...Array(7).keys() ].map( i => i*1000)
+          case 'BK_':
+            return [...Array(7).keys() ].map( i => i*1000)
+          case 'MN_':
+            return [...Array(14).keys() ].map( i => i*200)
+          case 'QN_':
+            return [...Array(7).keys() ].map( i => i*1000)
+          case 'SI_':
+            return [...Array(8).keys() ].map( i => i*200)
+          default:
+            return []
+        }
+      }
+      
+      setRaceDeathTicks = () => {
+      switch (this.props.abbr){
+        case 'BX_':
+          return [...Array(11).keys() ].map( i => i*200)
+        case 'BK_':
+          return [...Array(12).keys() ].map( i => i*200)
+        case 'MN_':
+          return [...Array(11).keys() ].map( i => i*100)
+        case 'QN_':
+          return [...Array(10).keys() ].map( i => i*200)
+        case 'SI_':
+          return [...Array(7).keys() ].map( i => i*100)
+        default:
+          return []
+      }
+      }
+
+      setSexCaseTicks = () => {
+        return []
+      }
+      setSexDeathTicks = () => {
+        return []
+      }
+
+      setSexHospitalTicks = () => {
+        return this.props.abbr === 'QN_' ? [...Array(12).keys() ].map( i => i*1000) : []
+      }
+
+      setAgeCaseTicks = () => {
+        switch (this.props.abbr){
+          case 'BX_':
+            return [...Array(20).keys() ].map( i => i*1000)
+          case 'BK_':
+            return [...Array(24).keys() ].map( i => i*1000)
+          case 'MN_':
+            return [...Array(12).keys() ].map( i => i*1000)
+          case 'QN_':
+            return [...Array(27).keys() ].map( i => i*1000)
+          case 'SI_':
+            return [...Array(7).keys() ].map( i => i*1000)
+          default:
+            return []
+      }
+    }
+  
+    setAgeHospitalTicks = () => {
+      return this.props.abbr === 'MN_' ? [...Array(10).keys() ].map( i => i*300) : []
+  }
+  
+    setAgeDeathTicks = () => {
+      switch (this.props.abbr){
+        case 'BX_':
+          return [...Array(10).keys() ].map( i => i*200)
+        case 'BK_':
+          return [...Array(10).keys() ].map( i => i*300)
+        case 'MN_':
+          return [...Array(9).keys() ].map( i => i*200)
+        case 'QN_':
+          return [...Array(10).keys() ].map( i => i*300)
+        case 'SI_':
+          return [...Array(6).keys() ].map( i => i*100)
+        default:
+          return []
+    }
+    }
+      
+
     render(){
         let borough = this.props.info.BOROUGH_GROUP
-
         return(
             <div id='each-borough'>
                 <h1>
@@ -51,9 +152,12 @@ export default class EachBorough extends Component {
               </table>
             </div>
     }
-            {this.state.mode === 'race' && <BoroughRace chartInfo={this.props.chartInfo} borough={borough} abbr={this.props.abbr} ></BoroughRace>}
+            {/* {this.state.mode === 'race' && <BoroughRace chartInfo={this.props.chartInfo} borough={borough} abbr={this.props.abbr} ></BoroughRace>}
             {this.state.mode === 'sex' && <BoroughSex chartInfo={this.props.chartInfo} borough={borough} abbr={this.props.abbr} ></BoroughSex>}
-            {this.state.mode === 'age' && <BoroughAge chartInfo={this.props.chartInfo} borough={borough} abbr={this.props.abbr}></BoroughAge>}
+            {this.state.mode === 'age' && <BoroughAge chartInfo={this.props.chartInfo} borough={borough} abbr={this.props.abbr}></BoroughAge>} */}
+            {this.state.mode === 'race' && <BoroughDemographic url={'borough_race'} demo={'Race'} caseTicks={this.setRaceCaseTicks} deathTicks={this.setRaceDeathTicks} hospitalTicks={this.setRaceHospitalTicks} chartInfo={this.props.chartInfo} borough={borough} abbr={this.props.abbr} categories={['Asian/Pacific-Islander', "Black/African-American", "Hispanic/Latino", "White", undefined]} ></BoroughDemographic>}
+            {this.state.mode === 'sex' && <BoroughDemographic url={'borough_sex'} demo={'Sex'} caseTicks={this.setSexCaseTicks} deathTicks={this.setSexDeathTicks}  hospitalTicks={this.setSexHospitalTicks} chartInfo={this.props.chartInfo} borough={borough} abbr={this.props.abbr} categories={["Male", "Female", undefined, undefined, undefined]} ></BoroughDemographic>}
+            {this.state.mode === 'age' && <BoroughDemographic url={'borough_age'} demo={'Age'} caseTicks={this.setAgeCaseTicks} deathTicks={this.setAgeDeathTicks} hospitalTicks={this.setAgeHospitalTicks}  chartInfo={this.props.chartInfo} borough={borough} abbr={this.props.abbr} categories={['0-17', '18-44', '45-64', '65-74', '75+']} ></BoroughDemographic>}
             {this.props.showCategory ? <button id='all' className='return-btn' onClick={(e) => this.handleClick(e)}>See all Categories</button> : <button className='return-btn' onClick={this.handleReturn} >See All Boroughs</button>}
             </div>
         )
