@@ -31,11 +31,11 @@ export default class EachBorough extends Component {
             case 'BX_':
                 return [...Array(18).keys()].map(i => i * 1000)
             case 'BK_':
-                return [...Array(13).keys()].map(i => i * 1000)
+                return [...Array(13).keys()].map(i => i * 1100)
             case 'MN_':
                 return [...Array(7).keys()].map(i => i * 1000)
             case 'QN_':
-                return [...Array(13).keys()].map(i => i * 1000)
+                return [...Array(13).keys()].map(i => i * 1100)
             case 'SI_':
                 return [...Array(7).keys()].map(i => i * 1000)
             default:

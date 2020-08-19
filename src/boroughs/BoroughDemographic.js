@@ -48,7 +48,7 @@ export default class BoroughDemographic extends Component {
                 {/* parsing out the header */}
                 <h1>
                     {this.props.borough === 'StatenIsland'
-                        ? 'Staten Island Results By Race'
+                        ? `Staten Island Results By ${this.props.demo}`
                         : this.props.borough + ` Results By ${this.props.demo}`}</h1>
                 {/* This series of buttons determines which category is activated */}
                 <button

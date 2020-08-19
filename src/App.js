@@ -216,8 +216,8 @@ export default function App() {
                     demo={'Race'}
                     url={'race_groups'}
                     deathTicks={[]}
-                    caseTicks={[...Array(14).keys()].map(i => i * 3000)}
-                    hospitalTicks={[...Array(16).keys()].map(i => i * 1000)}
+                    caseTicks={[...Array(20).keys()].map(i => i * 2770)}
+                    hospitalTicks={[...Array(18).keys()].map(i => i * 950)}
                     chartInfo={chartInfo}
                     categories={['Asian/Pacific-Islander', "Black/African-American", "Hispanic/Latino", "White", undefined]}/>}/>
                 <Route path='/by_neighborhood' component={Neighborhoods}></Route>
