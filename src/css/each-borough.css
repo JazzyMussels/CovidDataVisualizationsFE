@@ -1,11 +1,10 @@
-.category-img{
-    max-width:100%;
-    height:auto;
+.category-img {
+    max-width: 100%;
+    height: auto;
     border: 5px solid #474747;
     border-radius: 4px;
 }
-
-.category-img:hover{
+.category-img:hover {
     box-shadow: 0 15px 35px #45ADA8;
     border: 5px solid #9DE0AD;
 }

@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 import '../css/borough.css';
 
 export default class Borough extends Component {
-    constructor(){
+    constructor() {
         super()
-        this.state={
+        this.state = {
             bronx: {},
             brooklyn: {},
             manhattan: {},
@@ -15,95 +15,135 @@ export default class Borough extends Component {
             showBorough: false,
             currentChoice: '',
             showCategory: false
-          }
-          this.pageRef = React.createRef();
-          }
+        }
+        this.pageRef = React.createRef();
+    }
 
-          scrollToTop = () => {
-            this.pageRef.current.scrollIntoView({ behavior: 'smooth' })
-          }
-          
-      
-          componentDidMount(){
-            fetch('http://localhost:3001/boroughs')
+    scrollToTop = () => {
+        this
+            .pageRef
+            .current
+            .scrollIntoView({behavior: 'smooth'})
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:3001/boroughs')
             .then(resp => resp.json())
             .then(data => {
-              this.setState({
-              bronx: data["Bronx"],
-              brooklyn: data['Brooklyn'],
-              manhattan: data['Manhattan'],
-              queens: data['Queens'],
-              statenIsland: data['StatenIsland']
-            }) 
-            
-          })
-        }
+                this.setState({bronx: data["Bronx"], brooklyn: data['Brooklyn'], manhattan: data['Manhattan'], queens: data['Queens'], statenIsland: data['StatenIsland']})
 
-        updateShowCategory = () => {
-          this.setState({
+            })
+    }
+
+    updateShowCategory = () => {
+        this.setState({
             showCategory: !this.state.showCategory
-          })
-        }
+        })
+    }
 
-        returnClick = () => {
-          this.setState({
+    returnClick = () => {
+        this.setState({
             showBorough: !this.state.showBorough,
             currentChoice: ''
-          })
-        }
-        
-        handleClick = (event) => {
-          this.setState({
+        })
+    }
+
+    handleClick = (event) => {
+        this.setState({
             showBorough: !this.state.showBorough,
-            currentChoice: event.target.id,
-          })
-          this.iterateState(event.target.id)
-        }
+            currentChoice: event.target.id
+        })
+        this.iterateState(event.target.id)
+    }
 
-        iterateState = (id) => {
-          let dict = {'Bronx': this.state.bronx, 'Brooklyn': this.state.brooklyn, 
-                      'Manhattan': this.state.manhattan, 'Queens': this.state.queens, 
-                      'StatenIsland': this.state.statenIsland, 'Citywide': this.state.citywide}
-          let abbrDict = {'Bronx': 'BX_', 'Brooklyn': 'BK_', 'Manhattan': 'MN_', 'Queens': 'QN_', 'StatenIsland': 'SI_'}
-            return(
-              <div>
-                <EachBorough scroll={this.scrollToTop} chartInfo={this.props.chartInfo} 
-                             dualChartInfo={this.props.dualChartInfo} info={dict[id]} 
-                             abbr={abbrDict[id]} showCategory={this.state.showCategory} 
-                             updateShowCategory={this.updateShowCategory} returnClick={this.returnClick}
-                />
-              </div>
-            ) 
+    iterateState = (id) => {
+        let dict = {
+            'Bronx': this.state.bronx,
+            'Brooklyn': this.state.brooklyn,
+            'Manhattan': this.state.manhattan,
+            'Queens': this.state.queens,
+            'StatenIsland': this.state.statenIsland,
+            'Citywide': this.state.citywide
         }
-
-          render(){
-          return(
-           <div>
-             <div ref={this.pageRef}></div>
-              {this.state.showBorough ?
-               this.iterateState(this.state.currentChoice) :
-               <div>
-              <div> <h1>Select A Borough</h1></div>
-             
-              <table  id='bo-table' width="100%" cellSpacing="10" cellPadding='20'>
-                <tbody>
-              <tr>
-                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='Bronx' src={'/bronx.jpg'} alt='img'/></td>
-                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='Brooklyn' src={'/brooklyn.jpg'} alt='img'/></td>
-              </tr>
-              <tr>
-                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='Manhattan' src={'/nyc.jpg'} alt='img'/></td>
-                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='Queens' src={'/queens.jpg'} alt='img'/></td>
-              </tr>
-              <tr>
-                <td width="25%"><img className='borough-img' onClick={(e) => this.handleClick(e)} id='StatenIsland' src={'/staten.jpg'} alt='img'/></td>
-                <td width="25%"><Link  to='/home'><img className='borough-img' id='Citywide' src={'/citywide.jpg'} alt='img'/></Link></td>
-              </tr>
-              </tbody>
-              </table>
-              </div>
-          }
+        let abbrDict = {
+            'Bronx': 'BX_',
+            'Brooklyn': 'BK_',
+            'Manhattan': 'MN_',
+            'Queens': 'QN_',
+            'StatenIsland': 'SI_'
+        }
+        return (
+            <div>
+                <EachBorough
+                    scroll={this.scrollToTop}
+                    chartInfo={this.props.chartInfo}
+                    dualChartInfo={this.props.dualChartInfo}
+                    info={dict[id]}
+                    abbr={abbrDict[id]}
+                    showCategory={this.state.showCategory}
+                    updateShowCategory={this.updateShowCategory}
+                    returnClick={this.returnClick}/>
             </div>
-          );
-            }
-        }
+        )
+    }
+
+    render() {
+        return (
+            <div>
+                <div ref={this.pageRef}></div>
+                {this.state.showBorough
+                    ? this.iterateState(this.state.currentChoice)
+                    : <div>
+                        <div>
+                            <h1>Select A Borough</h1>
+                        </div>
+
+                        <table id='bo-table' width="100%" cellSpacing="10" cellPadding='20'>
+                            <tbody>
+                                <tr>
+                                    <td width="25%"><img
+                                        className='borough-img'
+                                        onClick={(e) => this.handleClick(e)}
+                                        id='Bronx'
+                                        src={'/bronx.jpg'}
+                                        alt='img'/></td>
+                                    <td width="25%"><img
+                                        className='borough-img'
+                                        onClick={(e) => this.handleClick(e)}
+                                        id='Brooklyn'
+                                        src={'/brooklyn.jpg'}
+                                        alt='img'/></td>
+                                </tr>
+                                <tr>
+                                    <td width="25%"><img
+                                        className='borough-img'
+                                        onClick={(e) => this.handleClick(e)}
+                                        id='Manhattan'
+                                        src={'/nyc.jpg'}
+                                        alt='img'/></td>
+                                    <td width="25%"><img
+                                        className='borough-img'
+                                        onClick={(e) => this.handleClick(e)}
+                                        id='Queens'
+                                        src={'/queens.jpg'}
+                                        alt='img'/></td>
+                                </tr>
+                                <tr>
+                                    <td width="25%"><img
+                                        className='borough-img'
+                                        onClick={(e) => this.handleClick(e)}
+                                        id='StatenIsland'
+                                        src={'/staten.jpg'}
+                                        alt='img'/></td>
+                                    <td width="25%">
+                                        <Link to='/home'><img className='borough-img' id='Citywide' src={'/citywide.jpg'} alt='img'/></Link>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+}
+            </div>
+        );
+    }
+}

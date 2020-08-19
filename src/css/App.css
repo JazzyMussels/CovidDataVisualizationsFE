@@ -1,63 +1,60 @@
 
-.App{
-  font-family: 'Michroma', sans-serif;
-  text-align: center;
-  color: whitesmoke;
-  background-color: #2A363B;
+.App {
+    font-family: 'Michroma', sans-serif;
+    text-align: center;
+    color: whitesmoke;
+    background-color: #2A363B;
 }
 
-#main-photo{
-  height: 80%; 
+#main-photo {
+    height: 80%;
 }
 
-.navbar{
-  height: 50px;
+.navbar {
+    height: 50px;
 }
 
 .logo {
-  width:50px;
-  height: 40px;
-  
+    width: 50px;
+    height: 40px;
+
 }
 
-.custom-tooltip{
-  background-color: #33539E;
-  display: flex;
-  flex-direction: column; 
+.custom-tooltip {
+    background-color: #33539E;
+    display: flex;
+    flex-direction: column;
 }
 
-.label{
-  display: flex;
-  flex-direction: column;
+.label {
+    display: flex;
+    flex-direction: column;
 }
 
-.category-btn{
-  border: 3px solid #474747;;
-  background-color: #355C7D;
-  font-size: 16px;
-  text-align: center;
-  color: #F26B38;
+.category-btn {
+    border: 3px solid #474747;
+    background-color: #355C7D;
+    font-size: 16px;
+    text-align: center;
+    color: #F26B38;
+}
+.category-btn:hover {
+    box-shadow: 0 15px 35px #45ADA8;
+    border: 5px solid #9DE0AD;
 }
 
-.category-btn:hover{
-  box-shadow: 0 15px 35px #45ADA8;
-  border: 5px solid #9DE0AD;
+.return-btn {
+    display: block;
+    width: 100%;
+    border: 7px solid #474747;
+    background-color: #355C7D;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    color: #F26B38;
 }
-
-.return-btn{
-  display: block;
-  width: 100%;
-  border: 7px solid #474747;;
-  background-color: #355C7D;
-  padding: 14px 28px;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-  color: #F26B38;
-}
-
-
-.return-btn:hover{
+.return-btn:hover {
     box-shadow: 0 15px 35px #45ADA8;
     border: 5px solid #9DE0AD;
 }

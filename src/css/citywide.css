@@ -11,7 +11,7 @@
     padding-top: 5px;
 }
 
-#hospital-cases{
+#hospital-cases {
     float: left;
     width: 52%;
     margin: auto;
@@ -19,7 +19,7 @@
     padding-left: 35px;
 }
 
-#death-cases{
+#death-cases {
     float: left;
     width: 48%;
     margin: auto;
@@ -27,15 +27,13 @@
     padding-left: 35px;
 }
 
-
-
-#main-photo{
+#main-photo {
     padding-bottom: 25px;
     position: relative;
-    
+
 }
 
-#arrow-photo{
+#arrow-photo {
     padding-bottom: 25px;
     position: absolute;
     width: 5em;
@@ -43,9 +41,7 @@
     right: 50px;
 }
 
-
-#title-card{
+#title-card {
     padding-bottom: 2px;
     margin-right: 40px;
 }
-
