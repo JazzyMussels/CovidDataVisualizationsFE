@@ -21,7 +21,7 @@ export default class Timeline extends Component {
     //The data is fetched and then parsed to make it play nicely with the recharts library structure; 
     //for the timeline we want to see cases, hospitilizations, and deaths in one composed chart
     componentDidMount() {
-        fetch('http://localhost:3001/timeline')
+        fetch('https://yibuf5tkd1.execute-api.us-east-1.amazonaws.com/dev/timeline')
             .then(resp => resp.json())
             .then(data => {
                 let dates = []

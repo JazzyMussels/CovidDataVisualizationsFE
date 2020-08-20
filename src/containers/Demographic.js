@@ -11,8 +11,9 @@ export default class Demographic extends Component {
     }
 
     // Here we grab the correct data according to the url prop passed in and pass the data response into state
+    
     componentDidMount() {
-        this.props.url && fetch(`http://localhost:3001/${this.props.url}`)
+        this.props.url && fetch(`https://yibuf5tkd1.execute-api.us-east-1.amazonaws.com/dev/${this.props.url}`)
             .then(resp => resp.json())
             .then(data => {
                 this.setState({data: data})

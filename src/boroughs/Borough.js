@@ -31,7 +31,7 @@ export default class Borough extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3001/boroughs')
+        fetch('https://yibuf5tkd1.execute-api.us-east-1.amazonaws.com/dev/boroughs')
             .then(resp => resp.json())
             .then(data => {
                 this.setState({bronx: data["Bronx"], brooklyn: data['Brooklyn'], manhattan: data['Manhattan'], queens: data['Queens'], statenIsland: data['StatenIsland']})

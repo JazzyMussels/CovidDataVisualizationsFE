@@ -13,7 +13,7 @@ export default class BoroughDemographic extends Component {
     //it is parsed out to include only that information which is relevant to the borough
     //selected by a user when this component renders
     componentDidMount() {
-        fetch(`http://localhost:3001/${this.props.url}`)
+        fetch(`https://yibuf5tkd1.execute-api.us-east-1.amazonaws.com/dev/${this.props.url}`)
             .then(resp => resp.json())
             .then(data => {
                 let boroughData = {}

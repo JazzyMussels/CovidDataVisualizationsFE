@@ -20,7 +20,7 @@ export default class Testing extends Component {
     //for testing, we fetch the data and parse it into total and positive tests to achieve the proper format for the recharts 
     //library. A composed chart will be rendered showing the comparison of postive and total tests by date
     componentDidMount() {
-        fetch('http://localhost:3001/tests')
+        fetch('https://yibuf5tkd1.execute-api.us-east-1.amazonaws.com/dev/tests')
             .then(resp => resp.json())
             .then(data => {
                 let dates = []

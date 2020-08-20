@@ -20,7 +20,7 @@ export default class Citywide extends Component {
     }
 
     componentDidMount = () => {
-        fetch('http://localhost:3001/boroughs')
+        fetch('https://yibuf5tkd1.execute-api.us-east-1.amazonaws.com/dev/boroughs')
             .then(res => res.json())
             .then(data => {
                 this.setState({data: data['Citywide']})

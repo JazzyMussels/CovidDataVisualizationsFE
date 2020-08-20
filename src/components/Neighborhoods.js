@@ -10,7 +10,7 @@ export default class Neighborhood extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3001/neighborhoods')
+        fetch('https://yibuf5tkd1.execute-api.us-east-1.amazonaws.com/dev/neighborhoods')
             .then(resp => resp.json())
             .then(data => {
                 this.setState({data: data})
