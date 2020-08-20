@@ -10,7 +10,7 @@ In addition, the data can be seen among the different boroughs according to simi
 ## Technologies Used
 * [ReactJS](https://reactjs.org/)
 * [Recharts](https://recharts.org/en-US/)-Data Visualization Library
-* The backend resources are served up in a Flask application which can be accessed [here](https://github.com/JazzyMussels/CovidDataVisualizationsBE)
+* The backend resources are served up in a [Flask](https://flask.palletsprojects.com/en/1.1.x/) application which can be accessed [here](https://github.com/JazzyMussels/CovidDataVisualizationsBE)
 
 ## Requirements
 *  [npm](https://www.npmjs.com/) OR [yarn](https://yarnpkg.com/)
