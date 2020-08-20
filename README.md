@@ -22,7 +22,7 @@ After cloning down the repo:
 
 
 ## Deployment
-This project has also deployed through [AWS Amplify](https://aws.amazon.com/amplify/), 
+This project has also been deployed through [AWS Amplify](https://aws.amazon.com/amplify/), 
 which utilizes Amazon web services to provide easy tools for scalable builds. 
 You can access the site [here](https://master.d2cxsg3bwiaih3.amplifyapp.com/home).
 
